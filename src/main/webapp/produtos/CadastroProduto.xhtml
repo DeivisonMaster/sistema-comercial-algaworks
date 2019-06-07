@@ -1,53 +1,57 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<ui:composition template="/_template.xhtml" 
-	  xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-                                                 xmlns:p="http://primefaces.org/ui"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 
-	  <ui:define name="titulo">Cadastro de Produtos</ui:define>
-	  
-	  <ui:define name="content">
-	  	<h1>Novo Produto</h1>
-	  		
-	    <p:toolbar style="margin: 20px 0 0 0">
-	    	<p:toolbarGroup>
-	    		<p:button value="Novo" outcome="/produtos/CadastroProduto"/>
-	    		<p:commandButton value="Salvar" id="botaoSalvar"/>
-	    	</p:toolbarGroup>
-	    	
-	    	<p:toolbarGroup align="right">
-	    		<p:button value="Pesquisa"/>
-	    	</p:toolbarGroup>
-	    </p:toolbar>
-	    
-	    
-	    <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px;"
-	    	columnClasses="rotulo, campo">
-	    	<p:outputLabel value="SKU" for="sku"/>
-	    	<p:inputText id="sku" size="20" maxlength="20"/>
-	    	
-	    	<p:outputLabel value="Nome" for="nome"/>
-	    	<p:inputText id="nome" size="20" maxlength="80"/>
-	    	
-	    	<p:outputLabel value="Categoria" for="categoria"/>
-			<p:selectOneMenu id="categoria">
-				<f:selectItem itemLabel="Selecione a Categoria"/>
-			</p:selectOneMenu>	
-			
-			<p:outputLabel value="Sub Categoria" for="subCategoria"/>
-			<p:selectOneMenu id="subCategoria">
-				<f:selectItem itemLabel="Selecione a SubCategoria"/>
-			</p:selectOneMenu>	 
-			
-			<p:outputLabel value="Valor Unitário" for="valorUnit"/>
-	    	<p:inputText id="valorUnit" size="10" maxlength="10" styleClass="moeda"/>   	
-	    	
-	    	<p:outputLabel value="Estoque" for="estoque"/>
-	    	<p:inputText id="estoque" size="10" maxlength="4"/>
-	    	
-	    </p:panelGrid>
-	  </ui:define>	
+	<ui:define name="titulo">Cadastro de Produtos</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="frmCadastroProduto">
+			<h1>Novo Produto</h1>
+
+			<p:toolbar style="margin: 20px 0 0 0">
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
+					<p:commandButton value="Salvar" id="botaoSalvar" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" outcome="/produtos/ConsultaProdutos"/>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top: 20px;" columnClasses="rotulo, campo">
+				<p:outputLabel value="SKU" for="sku" />
+				<p:inputText id="sku" size="20" maxlength="20" />
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="20" maxlength="80" />
+
+				<p:outputLabel value="Categoria" for="categoria" />
+				<p:selectOneMenu id="categoria">
+					<f:selectItem itemLabel="Selecione a Categoria" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Sub Categoria" for="subCategoria" />
+				<p:selectOneMenu id="subCategoria">
+					<f:selectItem itemLabel="Selecione a SubCategoria" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Valor Unitário" for="valorUnit" />
+				<p:inputText id="valorUnit" size="10" maxlength="10"
+					styleClass="moeda" />
+
+				<p:outputLabel value="Estoque" for="estoque" />
+				<p:inputText id="estoque" size="10" maxlength="4" />
+
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
 </ui:composition>
