@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+	<h:head>
+		<ui:insert name="titulo">Sistema de Pedidos de Venda</ui:insert>
+		<h:outputStylesheet library="css" name="sistema.css" />
+		<h:outputStylesheet library="css" name="../resources/sistema.css" />
+		<h:outputScript library="scripts" name="jquery.maskMoney.min.js" />
+	</h:head>
+	<h:body>
+
+		<p:ajaxStatus styleClass="ajax-status">
+			<f:facet name="start">
+				<h:graphicImage library="images" name="loading.gif" />
+			</f:facet>
+
+			<f:facet name="complete">
+				<h:outputText value="" />
+			</f:facet>
+		</p:ajaxStatus>
+
+		<div id="cabecalho">
+			<ui:include src="/template/header.xhtml" />
+		</div>
+
+		<div id="content">
+			<ui:insert name="content" />
+		</div>
+
+		<p:separator />
+
+		<div id="footer">
+			<ui:include src="/template/footer.xhtml" />
+		</div>
+
+
+		<!-- JAVASCRIPT -->
+		<script>
+			function configurarMoeda(){
+				$('.moeda').maskMoney({
+					decimal: ",", thousands: ".", allowZero: true
+				});
+			}
+
+			$(document).ready(function(){
+				configurarMoeda();
+			})
+		</script>
+
+	</h:body>
+</f:view>
+</html>
+
+
