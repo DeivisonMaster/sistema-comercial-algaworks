@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Consulta de Pedidos</ui:define>
+
+	<ui:define name="content">
+		<h:form id="frmConsultaPedido">
+			<h1>Consulta de Pedidos</h1>
+
+			<p:toolbar style="margin-top: 20px;">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup>
+					<p:button value="Novo"/>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top: 20px;" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="Número"/>
+				<h:panelGroup>
+					<p:inputText size="10" />
+					a
+					<p:inputText size="10" />
+				</h:panelGroup>
+				
+				<p:outputLabel value="Data de Criação"/>
+				<h:panelGroup>
+					<p:calendar size="10" pattern="dd/MM/yyyy"/>
+					a
+					<p:calendar size="10" pattern="dd/MM/yyyy"/>
+				</h:panelGroup>
+
+				<p:outputLabel value="Vendedor" for="vendedor" />
+				<p:inputText id="vendedor" size="40"/>
+				
+				<p:outputLabel value="Cliente" for="cliente" />
+				<p:inputText id="cliente" size="40"/>
+				
+				<p:outputLabel value="Status" />
+				<p:selectManyCheckbox>
+					<f:selectItem itemLabel="Orçamento"/>
+					<f:selectItem itemLabel="Emitido"/>
+					<f:selectItem itemLabel="Cancelado"/>
+				</p:selectManyCheckbox>
+			</p:panelGrid>
+
+
+			<p:dataTable var="produto"
+				value="#{consultaPedidoController.produtosFiltrados}"
+				style="margin:20px 0 0 0" emptyMessage="Nenhum produto encontrado."
+				rows="15" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Número" style="text-align: center; width: 100px;">
+					<h:outputText value="12345" />
+				</p:column>
+				
+				<p:column headerText="Cliente" style="text-align: center; width: 100px;">
+					<h:outputText value="Supermercado Bem Barato" />
+				</p:column>
+				
+				<p:column headerText="Vendedor"
+					style="text-align: center; width: 100px;">
+					<h:outputText value="José Jr" />
+				</p:column>
+
+				<p:column headerText="Data Criação"
+					style="text-align: center; width: 100px;">
+					<h:outputText value="22/11/2019" />
+				</p:column>
+
+				<p:column headerText="Valor total"
+					style="text-align: center; width: 100px;">
+					<h:outputText value="R$ 1.230,44" />
+				</p:column>
+				
+				<p:column headerText="Status"
+					style="text-align: center; width: 100px;">
+					<h:outputText value="Emitido" />
+				</p:column>
+
+				<p:column style="text-align: center; width: 100px;">
+					<p:button icon="ui-icon-pencil" title="Editar" />
+					<p:commandButton icon="ui-icon-trash" title="Excluir" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

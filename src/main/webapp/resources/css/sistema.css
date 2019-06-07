@@ -63,7 +63,12 @@ body {
 }
 
 
-
+.produto-tabela input{
+	width: 99%;
+}
+.ui-tabs .ui-tabs-panel{
+	padding: 0.5em 0.2em !important;
+}
 
 
 
