@@ -17,7 +17,7 @@
 					<p:commandButton value="Pesquisar" />
 				</p:toolbarGroup>
 
-				<p:toolbarGroup>
+				<p:toolbarGroup align="right">
 					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
 				</p:toolbarGroup>
 			</p:toolbar>
@@ -64,11 +64,23 @@
 					<h:outputText value="98" />
 				</p:column>
 
-				<p:column style="text-align: center; width: 100px;">
+				<p:column style="text-align: center; width: 4%;">
 					<p:button icon="ui-icon-pencil" title="Editar" />
-					<p:commandButton icon="ui-icon-trash" title="Excluir" />
+					
+					<p:commandButton icon="ui-icon-trash" title="Excluir">
+						<p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+			
+			
+			<p:confirmDialog header="Exclusão de Produto" 
+				message="Tem certeza que deseja excluir o produto?"
+				widgetVar="confirmarExclusao">
+				
+				<p:button value="Não" onclick="confirmarExclusao.hide(); return false;"/>
+				<p:commandButton value="Sim" oncomplete="confirmarExclusao.hide(); "/>
+			</p:confirmDialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

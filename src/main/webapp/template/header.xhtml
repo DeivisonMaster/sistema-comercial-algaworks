@@ -2,14 +2,62 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:form prependId="false">
-
 	<div id="header">
-		<h:link>
-			<h:graphicImage library="images" name="logo-algaworks.png" width="150px" height="50px"/>
-		</h:link>
+		<div style="float: left;">
+			<h:link outcome="/Home">
+				<h:graphicImage library="images" name="logo-algaworks.png"
+					width="150px" height="50px" />
+			</h:link>
+		</div>
+
+		<div style="float: right; margin-right: 110px;">
+			<span style="float: left; height: 30px; line-height: 30px; margin-right: 60px;">
+				Olá usuário!
+			</span>
+		
+			<p:menubar style="display: inline-block;">
+				<p:submenu label="Cadastros">
+					<p:menuitem value="Clientes"/>
+					<p:menuitem value="Usuários"/>
+					
+					<p:separator/>
+					
+					<p:menuitem value="Categorias"/>
+					<p:menuitem value="Produtos" outcome="/produtos/ConsultaProdutos"/>
+				</p:submenu>
+				
+				<p:submenu label="Pedidos">
+					<p:menuitem value="Novo Pedido" outcome="/pedidos/CadastroPedido"/>
+					<p:menuitem value="Consulta" outcome="/pedidos/ConsultaDePedidos"/>
+					
+					<p:separator/>
+					
+					<p:menuitem value="Categorias"/>
+					<p:menuitem value="Produtos" outcome="/produtos/ConsultaProdutos"/>
+				</p:submenu>
+				
+				<p:menuitem value="Sair" />
+			</p:menubar>
+		</div>
+		
+		<div style="clear: both;"/>
 	</div>
+
 </h:form>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
