@@ -9,7 +9,7 @@
 	<ui:define name="titulo">Cadastro de Produtos</ui:define>
 
 	<ui:define name="content">
-		<h:form id="frmConsultaProduto">
+		<h:form id="frmConsultaProduto" prependId="false">
 			<h1>Consulta de Produto</h1>
 
 			<p:toolbar style="margin-top: 20px;">
@@ -66,10 +66,7 @@
 
 				<p:column style="text-align: center; width: 4%;">
 					<p:button icon="ui-icon-pencil" title="Editar" />
-					
-					<p:commandButton icon="ui-icon-trash" title="Excluir">
-						<p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
-					</p:commandButton>
+					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="confirmarExclusao.show()"/>
 				</p:column>
 			</p:dataTable>
 			
