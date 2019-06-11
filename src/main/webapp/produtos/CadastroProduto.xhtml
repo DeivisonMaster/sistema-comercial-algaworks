@@ -10,6 +10,7 @@
 	<ui:define name="titulo">Cadastro de Produtos</ui:define>
 
 	<ui:define name="content">
+		<p:messages autoUpdate="true"/>
 
 		<h:form id="frmCadastroProduto">
 			<h1>Novo Produto</h1>
@@ -17,7 +18,8 @@
 			<p:toolbar style="margin: 20px 0 0 0">
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
-					<p:commandButton value="Salvar" id="botaoSalvar" />
+					<p:commandButton value="Salvar" id="botaoSalvar" 
+					action="#{cadastroProdutoController.salvar()}"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">

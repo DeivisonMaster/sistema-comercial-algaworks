@@ -4,9 +4,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-	<factory>
-		<exception-handler-factory>
-			br.com.pedidovenda.util.jsf.JSFExceptionHandlerFactory
-		</exception-handler-factory>
-	</factory>
+<!-- 	<factory> -->
+<!-- 		<exception-handler-factory> -->
+<!-- 			br.com.pedidovenda.util.jsf.JSFExceptionHandlerFactory -->
+<!-- 		</exception-handler-factory> -->
+<!-- 	</factory> -->
 </faces-config>

@@ -18,7 +18,7 @@ body {
 
 #header{
 	padding: 2px 0px; margin-bottom: 20px; height: auto; background-color: #545454;
-	color: #fff; box-shadow: 0px 2px 2px #ccc; border: 1px solid red;
+	color: #fff; box-shadow: 0px 2px 2px #ccc; 
 }
 
 #header > div{
