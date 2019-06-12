@@ -3,13 +3,40 @@ package br.com.pedidovenda.model;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name = "cliente")
 public class Cliente {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(nullable = false, length = 100)
 	private String nome;
+	
+	@Column(name = "email", nullable = false, length = 255, unique = true)
 	private String email;
+	
+	@Column(name = "documento_receita_federal", nullable = false, length = 14)
 	private String documentoReceitaFederal;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo_pessoa", nullable = false, length = 10)
 	private TipoPessoa tipoPessoa;
+	
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private Collection<Endereco> endereco = new ArrayList<>(); 
 	
 	

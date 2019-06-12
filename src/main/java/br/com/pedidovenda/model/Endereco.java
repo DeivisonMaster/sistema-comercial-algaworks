@@ -1,14 +1,42 @@
 package br.com.pedidovenda.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "endereco")
 public class Endereco {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(nullable = false, length = 100)
 	private String logradouro;
+	
+	@Column(nullable = false, length = 20)
 	private String numero;
+	
+	@Column(nullable = false, length = 150)
 	private String complemento;
+	
+	@Column(nullable = false, length = 60)
 	private String cidade;
+	
+	@Column(nullable = false, length = 60)
 	private String uf;
+	
+	@Column(nullable = false, length = 9)
 	private String cep;
+	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id", nullable = false)
 	private Cliente cliente;
 	
 	

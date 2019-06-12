@@ -1,12 +1,27 @@
 package br.com.pedidovenda.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class EnderecoEntrega {
 	
+	@Column(name = "entrega_logradouro", nullable = false, length = 150)
 	private String logradouro;
+	
+	@Column(name = "entrega_numero", nullable = false, length = 20)
 	private String numero;
+	
+	@Column(name = "entrega_complemento", length = 150)
 	private String complemento;
+	
+	@Column(name = "entrega_cidade", nullable = false, length = 60)
 	private String cidade;
+	
+	@Column(name = "entrega_uf", nullable = false, length = 60)
 	private String uf;
+	
+	@Column(name = "entrega_cep", nullable = false, length = 90)
 	private String cep;
 	
 	

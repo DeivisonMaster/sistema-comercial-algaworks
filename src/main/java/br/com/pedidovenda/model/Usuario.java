@@ -1,14 +1,40 @@
 package br.com.pedidovenda.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "usuario")
 public class Usuario {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(nullable = false, length = 100)
 	private String nome;
+	
+	@Column(name = "email", nullable = false, length = 255, unique = true)
 	private String email;
+	
+	@Column(nullable = false)
 	private String senha;
-	private Collection<Grupo> grupos;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "usuario_grupo", 
+	joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "grupo_id"))
+	private Collection<Grupo> grupos = new ArrayList<>();
 	
 	
 	public Long getId() {

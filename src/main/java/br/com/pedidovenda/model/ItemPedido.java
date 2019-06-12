@@ -2,14 +2,36 @@ package br.com.pedidovenda.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "item_pedido")
 public class ItemPedido {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private Integer quantidade;
-	private BigDecimal valorUnitario;
-	private Produto produto;
-	private Pedido pedido;
 	
+	@Column(nullable = false, length = 3)
+	private Integer quantidade;
+	
+	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
+	private BigDecimal valorUnitario;
+	
+	@ManyToOne
+	@JoinColumn(name = "produto_id", nullable = false)
+	private Produto produto;
+
+	@ManyToOne
+	@JoinColumn(name = "pedido_id", nullable = false)
+	private Pedido pedido;
 	
 	public Long getId() {
 		return id;
