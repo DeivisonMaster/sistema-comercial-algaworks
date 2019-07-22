@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/_Template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<ui:define name="tituloPagina">Cadastro de Usuário</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="idCadastroUsuario" prependId="false">
+			
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/usuario/CadastroUsuario"/>
+					<p:commandButton value="Salvar" id="botaoSalvar"/>
+				</p:toolbarGroup>
+				
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa"/>
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+			
+			<p:panelGrid columns="2" id="painel" style="width: 100%; 
+	 			margin-top: 20px;" columnClasses="rotulo, campo">
+	 			
+				<p:outputLabel value="Nome" for="nome"/>
+				<p:inputText id="nome" size="50"/>
+				
+				<p:outputLabel value="E-mail" for="email"/>
+				<p:inputText id="email" size="50"/>
+				
+				<p:outputLabel value="Senha" for="senha"/>
+				<p:password id="senha" size="30"/>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
