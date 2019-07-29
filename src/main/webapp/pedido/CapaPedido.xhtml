@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+                   xmlns:p="http://primefaces.org/ui">
+
+
+	<p:panelGrid columns="4" id="painel"
+		style="width: 100%; 
+					margin-top: 20px;"
+		columnClasses="rotulo, campo, rotulo, campo">
+
+		<p:outputLabel value="Número" />
+		<p:inputText size="30" />
+		
+		<p:outputLabel value="Date de Criação" />
+		<p:inputText size="30" />
+
+		<p:outputLabel value="Status" />
+		<p:inputText size="30" />
+
+		<p:outputLabel value="Vendedor" for="vendedor"/>
+		<p:selectOneMenu id="vendedor">
+			<f:selectItem itemLabel="Selecione" />
+		</p:selectOneMenu>
+
+		<p:outputLabel value="Cliente" for="cliente" />
+		<p:autoComplete id="cliente" size="40" dropdown="true"/>
+
+		<p:outputLabel value="Forma de Pagamento" for="formaPagamento"/>
+		<p:selectOneMenu id="formaPagamento">
+			<f:selectItem itemLabel="Selecione" />
+		</p:selectOneMenu>
+		
+		<p:outputLabel value="Valor do Frete" for="valorFrete"/>
+		<p:inputText id="valorFrete" size="30" />
+		
+		<p:outputLabel value="Subtotal" for="subTotal" style="font-weight: bold"/>
+		<p:inputText id="subTotal" size="30" style="font-weight: bold"/>
+	
+		<p:outputLabel value="Valor de desconto" for="valorDesconto"/>
+		<p:inputText id="valorDesconto" size="30" />
+		
+		<p:outputLabel value="Total do Pedido" for="totalPedido" style="font-weight: bold; font-size: 1.1em"/>
+		<p:inputText id="totalPedido" size="30" style="font-weight: bold; font-size: 1.1em"/>
+	</p:panelGrid>
+</ui:composition>
+
+
+
+
+
+
+
+
+
+

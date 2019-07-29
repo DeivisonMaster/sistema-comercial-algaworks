@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+
+	<p:dataTable id="tabelaItens">
+		<p:column headerText="SKU" style="width: 100px; text-align: center;">
+			<p:inputText size="8"/>
+		</p:column>
+		<p:column headerText="Produto">
+			<p:autoComplete styleClass="produto-tabela"/>
+		</p:column>
+		<p:column headerText="Valor Unitário" style="width: 100px; text-align: right;">
+			<p:inputText size="8"/>
+		</p:column>
+		<p:column headerText="Quantidade" style="width: 100px; text-align: center;">
+			<p:inputText size="8"/>
+		</p:column>
+		<p:column headerText="Estoque" style="width: 100px; text-align: center;">
+			<p:inputText size="8"/>
+		</p:column>
+		<p:column headerText="Valor Total" style="width: 100px; text-align: right;">
+			<p:inputText size="8"/>
+		</p:column>
+		
+		<p:columnGroup type="footer">
+			<p:row>
+				<p:column colspan="5" footerText="Subtotal" style="text-align: right;"/>
+				<p:column footerText="R$ 0,00" style="text-align: right;"/>
+			</p:row>
+		</p:columnGroup>
+	</p:dataTable>
+</ui:composition>
+
+
+
+
+
+
+
+
+
+

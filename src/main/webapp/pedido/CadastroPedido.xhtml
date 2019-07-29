@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<ui:define name="tituloPagina">Cadastro de Pedidos</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="idCadastroPedido" prependId="false">
+
+			<h1>Novo Pedido</h1>
+
+			<ui:include src="/pedido/BotoesPedido.xhtml" />
+
+			<ui:include src="/pedido/CapaPedido.xhtml" />
+
+			<p:tabView style="margin-top: 20px;">
+				<p:tab title="Itens">
+					<ui:include src="/pedido/ItensPedido.xhtml" />
+				</p:tab>
+
+				<p:tab title="Dados de Entrega">
+					<ui:include src="/pedido/DadosEntregaPedido.xhtml" />
+				</p:tab>
+
+				<p:tab title="Observacao">
+					<h:panelGroup layout="block" style="margin-right: 10px;">
+						<p:inputTextarea rows="10" style="width: 100%;" />
+					</h:panelGroup>
+
+				</p:tab>
+			</p:tabView>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
