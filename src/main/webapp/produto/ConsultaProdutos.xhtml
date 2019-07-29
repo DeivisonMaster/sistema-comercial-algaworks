@@ -8,7 +8,7 @@
 
 	<ui:define name="titulo">Cadastro de Produtos</ui:define>
 
-	<ui:define name="content">
+	<ui:define name="conteudo">
 		<h:form id="frmConsultaProduto" prependId="false">
 		
 			<h1>Consulta de Produto</h1>
@@ -19,7 +19,7 @@
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
+					<p:button value="Novo" outcome="/produto/CadastroProduto" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -67,7 +67,7 @@
 
 				<p:column style="text-align: center; width: 4%;">
 					<p:button icon="ui-icon-pencil" title="Editar" />
-					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="confirmarExclusao.show()"/>
+					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmarExclusao').show()"/>
 				</p:column>
 			</p:dataTable>
 			

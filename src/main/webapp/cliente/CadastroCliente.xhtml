@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition template="/_Template.xhtml"
+<ui:composition template="/_template.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -43,8 +43,40 @@
 				
 				<p:outputLabel value="Email" for="email"/>
 				<p:inputText id="email" size="30"/>
-				
 			</p:panelGrid>
+			
+			<p:spacer/>
+			<p:commandButton value="Adicionar Endereço"/>
+			
+			<p:dataTable var="cliente" style="margin:20px 0 0 0"
+				emptyMessage="Nenhum cliente encontrado." rows="15" paginator="true"
+				paginatorAlwaysVisible="false" paginatorPosition="bottom">
+
+				<p:column headerText="Logradouro" style="text-align: center; width: 200px;">
+					<h:outputText />
+				</p:column>
+				
+				<p:column headerText="Número" style="text-align: center; width: 50px;">
+					<h:outputText />
+				</p:column>
+				
+				<p:column headerText="Complemento" style="text-align: center; width: 200px;">
+					<h:outputText />
+				</p:column>
+				
+				<p:column headerText="CEP" style="text-align: center; width: 50px;">
+					<h:outputText />
+				</p:column>
+				
+				<p:column headerText="Cidade/UF" style="text-align: center; width: 100px;">
+					<h:outputText />
+				</p:column>
+				
+				<p:column style="width: 100px; text-align: center;">
+					<p:button icon="ui-icon-pencil" title="Editar"/>
+					<p:commandButton icon="ui-icon-trash" title="Excluir"/>
+				</p:column>
+			</p:dataTable>
 		</h:form>
 	</ui:define>
 

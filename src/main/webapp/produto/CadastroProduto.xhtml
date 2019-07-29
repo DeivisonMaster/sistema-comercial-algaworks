@@ -9,7 +9,7 @@
 
 	<ui:define name="titulo">Cadastro de Produtos</ui:define>
 
-	<ui:define name="content">
+	<ui:define name="conteudo">
 		<p:messages autoUpdate="true"/>
 
 		<h:form id="frmCadastroProduto">
@@ -18,19 +18,19 @@
 
 			<p:toolbar style="margin: 20px 0 0 0">
 				<p:toolbarGroup>
-					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
+					<p:button value="Novo" outcome="/produto/CadastroProduto" />
 					<p:commandButton value="Salvar" id="botaoSalvar" 
 					action="#{cadastroProdutoController.salvar()}"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Pesquisa" outcome="/produtos/ConsultaProdutos"/>
+					<p:button value="Pesquisa" outcome="/produto/ConsultaProdutos"/>
 				</p:toolbarGroup>
 			</p:toolbar>
 
 
 			<p:panelGrid columns="2" id="painel"
-				style="width: 100%; margin-top: 20px;" columnClasses="rotulo, campo">
+				style="width: 100%; margin: 20px 0 10px 0;" columnClasses="rotulo, campo">
 				<p:outputLabel value="SKU" for="sku" />
 				<p:inputText id="sku" size="20" maxlength="20" />
 

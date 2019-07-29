@@ -30,7 +30,7 @@ body {
 }
 
 #footer{
-	padding: 0px 8px; margin-bottom: 10px;
+	padding: 0px 8px; margin: 10px 0 0 10px; 
 }
 
 /*********************** LOGIN ********************************/
@@ -47,7 +47,7 @@ body {
 /*********************** CADASTRO PRODUTO ********************************/
 
 .rotulo{
-	width: 150px;
+	width: 150px; 
 }
 .ui-panelgrid td{
 	height: 30px;

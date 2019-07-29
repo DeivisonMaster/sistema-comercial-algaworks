@@ -37,7 +37,23 @@
 				
 				<p:outputLabel value="Senha" for="senha"/>
 				<p:password id="senha" size="30"/>
+	
+				<p:selectOneMenu id="idGrupoUsuario" style="width: 70px;">
+					<f:selectItem itemLabel="Selecione"/>
+				</p:selectOneMenu>
+				<p:commandButton value="Adicionar Grupo"/>
+				
 			</p:panelGrid>
+			
+			<p:spacer/>
+			
+			<p:dataTable>
+				<p:column headerText="Grupo" style="text-align: left"/>
+				
+				<p:column style="text-align: center; width: 50px;">
+					<p:commandButton icon="ui-icon-trash" title="Excluir" />
+				</p:column>
+			</p:dataTable>
 		</h:form>
 	</ui:define>
 
