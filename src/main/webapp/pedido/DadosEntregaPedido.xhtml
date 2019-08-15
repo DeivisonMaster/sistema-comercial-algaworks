@@ -11,27 +11,34 @@
 		columnClasses="rotulo, campo, rotulo, campo">
 		
 		<p:outputLabel value="Data de entrega" for="dataEntrega"/>
-		<p:calendar id="dataEntrega" size="10" pattern="dd/MM/yyyy"/>
+		<p:calendar id="dataEntrega" size="10" pattern="dd/MM/yyyy"
+			value="#{cadastroPedido.pedido.dataEntrega}"/>
 		
 		<p:spacer/>
 		<p:spacer/>
 		
 		<p:outputLabel value="Logradouro" for="entregaLogradouro"/>
-		<p:inputText id="entregaLogradouro" size="50"/>
+		<p:inputText id="entregaLogradouro" size="50" 
+			value="#{cadastroPedido.pedido.enderecoEntrega.logradouro}"/>
 		
-		<p:outputLabel value="Número"/>
-		<p:inputText id="entregaNumero" size="5"/>
+		<p:outputLabel value="Número" for="entregaNumero"/>
+		<p:inputText id="entregaNumero" size="5" 
+			value="#{cadastroPedido.pedido.enderecoEntrega.numero}"/>
 		
-		<p:outputLabel value="Complemento"/>
-		<p:inputText id="entregaComplemento" size="50"/>
+		<p:outputLabel value="Complemento" for="entregaComplemento"/>
+		<p:inputText id="entregaComplemento" size="50" 
+			value="#{cadastroPedido.pedido.enderecoEntrega.complemento}"/>
 		
 		<p:outputLabel value="Cidade"/>
-		<p:inputText id="entregaCidade" size="30"/>
+		<p:inputText id="entregaCidade" size="30"
+			value="#{cadastroPedido.pedido.enderecoEntrega.cidade}"/>
 		
 		<p:outputLabel value="Estado"/>
-		<p:inputText id="entregaEstado" size="20"/>
+		<p:inputText id="entregaEstado" size="20"
+			value="#{cadastroPedido.pedido.enderecoEntrega.uf}"/>
 		
 		<p:outputLabel value="CEP"/>
-		<p:inputText id="entregaCEP" size="10"/>
+		<p:inputText id="entregaCEP" size="10" 
+			value="#{cadastroPedido.pedido.enderecoEntrega.cep}"/>
 	</p:panelGrid>
 </ui:composition>

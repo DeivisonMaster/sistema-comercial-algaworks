@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="tituloPagina">Cadastro de Usuários</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="idCadastroCliente" prependId="false">
+		
+			<h1>Pesquisa de Usuário</h1>
+
+			<p:toolbar style="margin: 20px 0 0 0;">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" outcome="/cliente/ConsultaCliente" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top: 20px;" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="Nome " />
+				<p:autoComplete size="80"/>
+				
+			</p:panelGrid>
+			
+			
+			<p:dataTable var="produto"
+				value="#{consultaPedidoController.produtosFiltrados}"
+				style="margin:20px 0 0 0" emptyMessage="Nenhum produto encontrado."
+				rows="15" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Nome"
+					style="text-align: center; width: 400px;">
+					<h:outputText value="R$ 1.230,44" />
+				</p:column>
+				
+				<p:column headerText="E-mail" style="text-align: center; width: 100px;">
+					<h:outputText value="Emitido" />
+				</p:column>
+
+				<p:column style="text-align: center; width: 50px;">
+					<p:button icon="ui-icon-pencil" title="Editar" />
+					<p:commandButton icon="ui-icon-trash" title="Excluir" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
