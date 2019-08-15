@@ -10,17 +10,18 @@
 	<ui:define name="titulo">Cadastro de Produtos</ui:define>
 
 	<ui:define name="conteudo">
-		<p:messages autoUpdate="true"/>
-
-		<h:form id="frmCadastroProduto">
+		<h:form id="idFormCadastroProduto">
 		
 			<h1>Novo Produto</h1>
+			
+			<p:messages id="growl" autoUpdate="true"/>
 
 			<p:toolbar style="margin: 20px 0 0 0">
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/produto/CadastroProduto" />
+					
 					<p:commandButton value="Salvar" id="botaoSalvar" 
-					action="#{cadastroProdutoController.salvar()}"/>
+					action="#{cadastroProdutoController.salvar}" process="@form" update="growl"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
@@ -31,11 +32,14 @@
 
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin: 20px 0 10px 0;" columnClasses="rotulo, campo">
+				
 				<p:outputLabel value="SKU" for="sku" />
-				<p:inputText id="sku" size="20" maxlength="20" />
+				<p:inputText id="sku" size="20" maxlength="20"
+					value="#{cadastroProduto.produto.sku}"/>
 
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" size="20" maxlength="80" />
+				<p:inputText id="nome" size="20" maxlength="80" 
+					value="#{cadastroProduto.produto.nome}"/>
 
 				<p:outputLabel value="Categoria" for="categoria" />
 				<p:selectOneMenu id="categoria">
@@ -43,16 +47,19 @@
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Sub Categoria" for="subCategoria" />
-				<p:selectOneMenu id="subCategoria">
+				<p:selectOneMenu id="subCategoria" value="#{cadastroProduto.produto.categoria}">
 					<f:selectItem itemLabel="Selecione a SubCategoria" />
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Valor Unitário" for="valorUnit" />
 				<p:inputText id="valorUnit" size="10" maxlength="10"
-					styleClass="moeda" />
+					styleClass="moeda" value="#{cadastroProduto.produto.valorUnitario}">
+					<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>	
+				</p:inputText>
 
 				<p:outputLabel value="Estoque" for="estoque" />
-				<p:inputText id="estoque" size="10" maxlength="4" />
+				<p:inputText id="estoque" size="10" maxlength="5" 
+					value="#{cadastroProduto.produto.quantidadeEstoque}"/>
 
 			</p:panelGrid>
 		</h:form>

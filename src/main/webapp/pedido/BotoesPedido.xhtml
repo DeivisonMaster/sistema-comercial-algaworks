@@ -9,7 +9,9 @@
 	<p:toolbar style="margin: 20px 0 0 0;">
 		<p:toolbarGroup>
 			<p:button value="Novo" outcome="/pedido/CadastroPedido" />
-			<p:commandButton value="Salvar" />
+			
+			<p:commandButton value="Salvar" 
+				action="#{cadastroPedido.salvar()}" process="@form" update="growl"/>
 		</p:toolbarGroup>
 
 		<p:toolbarGroup align="right">

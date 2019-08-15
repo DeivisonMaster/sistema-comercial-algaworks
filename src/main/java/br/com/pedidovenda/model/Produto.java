@@ -10,6 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "produto")
@@ -19,18 +24,24 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotBlank
+	@Size(max = 5)
 	@Column(nullable = false, length = 50)
 	private String nome;
 	
-	@Column(unique = true, length = 30, nullable = false)
+	@NotBlank
+	@Column(nullable = false, length = 20, unique = true)
 	private String sku;
 	
-	@Column(precision = 10, scale = 2)
+	@NotNull(message = "é obrigatório")
+	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
 	private BigDecimal valorUnitario;
 	
-	@Column(length = 10)
+	@NotNull @Min(0) @Max(9999)
+	@Column(name = "quantidade_estoque", nullable = false, length = 5)
 	private Integer quantidadeEstoque;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "categoria_id", nullable = false)
 	private Categoria categoria;
@@ -52,7 +63,7 @@ public class Produto {
 		return sku;
 	}
 	public void setSku(String sku) {
-		this.sku = sku;
+		this.sku = sku == null ? null : sku.toUpperCase();
 	}
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
