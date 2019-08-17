@@ -1,6 +1,7 @@
 package br.com.pedidovenda.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.faces.view.ViewScoped;
@@ -9,10 +10,13 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.validation.constraints.NotNull;
 
 import br.com.pedidovenda.model.Categoria;
 import br.com.pedidovenda.model.Produto;
-import br.com.pedidovenda.repository.RepositoryCategoria;
+import br.com.pedidovenda.repository.CategoriaRepository;
+import br.com.pedidovenda.service.CadastroProdutoService;
+import br.com.pedidovenda.util.jsf.FacesUtil;
 
 @Named("cadastroProduto")
 @ViewScoped
@@ -22,23 +26,44 @@ public class CadastroProdutoController implements Serializable{
 	
 	private Produto produto;
 	private Collection<Categoria> categorias;
+	private Collection<Categoria> subCategorias;
+	private Categoria categoriaSelecionada;
 	
 	@Inject
-	private RepositoryCategoria repositoryCategoria;
+	private CadastroProdutoService cadastroProdutoService;
+	
+	@Inject
+	private CategoriaRepository repositoryCategoria;
 	
 	public CadastroProdutoController() {
 		this.produto = new Produto();
 	}
 	
 	public void inicializar() {
-		this.categorias = repositoryCategoria.buscarPorCategorias();
+		System.out.println("Inicializando...");
+
+		if(FacesUtil.isNotPostBack()) {
+			categorias = repositoryCategoria.buscarPorCategorias();
+		}
 	}
 
 	
 	public void salvar() {
-		throw new RuntimeException("Teste de exceção");
+		this.cadastroProdutoService.salvar(this.produto);
+		//limpar();
+		
+		FacesUtil.addInfoMessage("Produto salvo com sucesso!");
 	}
 	
+	private void limpar() {
+		this.produto = new Produto();
+		this.categoriaSelecionada = null; 
+		this.subCategorias = new ArrayList<>();
+	}
+	
+	public void carregarSubCategorias() {
+		this.subCategorias = this.repositoryCategoria.buscaPorSubCategoriaDeCategoria(this.categoriaSelecionada);
+	}
 	
 	public Produto getProduto() {
 		return produto;
@@ -48,5 +73,16 @@ public class CadastroProdutoController implements Serializable{
 	}
 	public Collection<Categoria> getCategorias() {
 		return categorias;
+	}
+	
+	@NotNull
+	public Categoria getCategoriaSelecionada() {
+		return categoriaSelecionada;
+	}
+	public void setCategoriaSelecionada(Categoria categoriaSelecionada) {
+		this.categoriaSelecionada = categoriaSelecionada;
+	}
+	public Collection<Categoria> getSubCategorias() {
+		return subCategorias;
 	}
 }

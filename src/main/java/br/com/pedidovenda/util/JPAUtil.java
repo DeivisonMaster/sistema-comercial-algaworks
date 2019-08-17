@@ -14,10 +14,10 @@ import javax.persistence.Persistence;
 public class JPAUtil implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private EntityManagerFactory entityManagerFactory; 
+	private static EntityManagerFactory entityManagerFactory; 
 	
 	
-	public JPAUtil() {
+	static {
 		entityManagerFactory = Persistence.createEntityManagerFactory("PedidoVenda");
 	}
 	

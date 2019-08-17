@@ -16,17 +16,17 @@
 		</f:metadata>
 		
 		<h:form id="idFormCadastroProduto">
+			<p:messages id="growl" autoUpdate="true"/>
+<!-- 			<p:growl id="msg" showDetail="false" life="3000"/> -->
 		
 			<h1>Novo Produto</h1>
-			
-			<p:messages id="growl" autoUpdate="true"/>
 
 			<p:toolbar style="margin: 20px 0 0 0">
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/produto/CadastroProduto" />
 					
 					<p:commandButton value="Salvar" id="botaoSalvar" 
-					action="#{cadastroProdutoController.salvar}" process="@form" update="growl"/>
+					action="#{cadastroProduto.salvar()}" process="@form" update="growl"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
@@ -47,16 +47,21 @@
 					value="#{cadastroProduto.produto.nome}"/>
 
 				<p:outputLabel value="Categoria" for="categoria" />
-				<p:selectOneMenu id="categoria">
+				<p:selectOneMenu id="categoria" value="#{cadastroProduto.categoriaSelecionada}">
 					<f:selectItem itemLabel="Selecione a Categoria" />
 					
 					<f:selectItems var="categoria" value="#{cadastroProduto.categorias}" 
 						itemLabel="#{categoria.descricao}" itemValue="#{categoria}"/>
+						
+					<p:ajax listener="#{cadastroProduto.carregarSubCategorias}" update="idSubCategoria"/>
 				</p:selectOneMenu>
 
-				<p:outputLabel value="Sub Categoria" for="subCategoria" />
-				<p:selectOneMenu id="subCategoria" value="#{cadastroProduto.produto.categoria}">
+				<p:outputLabel value="Sub Categoria" for="idSubCategoria" />
+				<p:selectOneMenu id="idSubCategoria" value="#{cadastroProduto.produto.categoria}">
 					<f:selectItem itemLabel="Selecione a SubCategoria" />
+					
+					<f:selectItems var="subCategoria" value="#{cadastroProduto.subCategorias}" 
+						itemLabel="#{subCategoria.descricao}" itemValue="#{subCategoria}"/>
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Valor Unitário" for="valorUnit" />
