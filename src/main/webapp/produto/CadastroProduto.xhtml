@@ -10,6 +10,10 @@
 	<ui:define name="titulo">Cadastro de Produtos</ui:define>
 
 	<ui:define name="conteudo">
+		<f:metadata>
+			<f:event listener="#{cadastroProduto.inicializar()}" type="preRenderView"/>
+		</f:metadata>
+		
 		<h:form id="idFormCadastroProduto">
 		
 			<h1>Novo Produto</h1>
@@ -44,6 +48,9 @@
 				<p:outputLabel value="Categoria" for="categoria" />
 				<p:selectOneMenu id="categoria">
 					<f:selectItem itemLabel="Selecione a Categoria" />
+					
+					<f:selectItems var="categoria" value="#{cadastroProduto.categorias}" 
+						itemLabel="#{categoria.descricao}" itemValue="#{categoria}"/>
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Sub Categoria" for="subCategoria" />
