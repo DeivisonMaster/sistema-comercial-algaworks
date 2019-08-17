@@ -12,6 +12,7 @@ import javax.persistence.Persistence;
 
 import br.com.pedidovenda.model.Categoria;
 import br.com.pedidovenda.model.Produto;
+import br.com.pedidovenda.repository.RepositoryCategoria;
 
 @Named("cadastroProduto")
 @ViewScoped
@@ -23,19 +24,14 @@ public class CadastroProdutoController implements Serializable{
 	private Collection<Categoria> categorias;
 	
 	@Inject
-	private EntityManager entityManager;
-	
-	
+	private RepositoryCategoria repositoryCategoria;
 	
 	public CadastroProdutoController() {
 		this.produto = new Produto();
 	}
 	
 	public void inicializar() {
-		
-		
-		this.categorias = entityManager.createQuery("from Categoria",  Categoria.class).getResultList();
-		entityManager.close();
+		this.categorias = repositoryCategoria.buscarPorCategorias();
 	}
 
 	
