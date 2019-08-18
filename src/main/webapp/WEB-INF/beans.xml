@@ -1,0 +1,5 @@
+<beans>
+	<interceptors>
+		<class>br.com.pedidovenda.interceptador.GerenciadorTransacao</class>
+	</interceptors>
+</beans>

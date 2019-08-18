@@ -7,10 +7,6 @@ import java.util.Collection;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.validation.constraints.NotNull;
 
 import br.com.pedidovenda.model.Categoria;
 import br.com.pedidovenda.model.Produto;
@@ -50,7 +46,7 @@ public class CadastroProdutoController implements Serializable{
 	
 	public void salvar() {
 		this.cadastroProdutoService.salvar(this.produto);
-		//limpar();
+		limpar();
 		
 		FacesUtil.addInfoMessage("Produto salvo com sucesso!");
 	}
@@ -75,7 +71,6 @@ public class CadastroProdutoController implements Serializable{
 		return categorias;
 	}
 	
-	@NotNull
 	public Categoria getCategoriaSelecionada() {
 		return categoriaSelecionada;
 	}
