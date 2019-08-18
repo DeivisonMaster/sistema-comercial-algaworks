@@ -69,7 +69,9 @@
 				</p:column>
 
 				<p:column style="text-align: center; width: 4%;">
-					<p:button icon="ui-icon-pencil" title="Editar" />
+					<p:button outcome="/produto/CadastroProduto" icon="ui-icon-pencil" title="Editar">
+						<f:param name="produto" value="#{produto.id}"/>
+					</p:button>
 					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmarExclusao').show()"/>
 				</p:column>
 			</p:dataTable>

@@ -4,14 +4,17 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui">
 
 
-	<ui:define name="titulo">Cadastro de Produtos</ui:define>
+	<ui:define name="titulo">#{cadastroProduto.isVerificaCadastroEdicaoProduto() ? 'Novo Produto' : 'Edição de Produto'}</ui:define>
 
 	<ui:define name="conteudo">
 		<f:metadata>
-			<f:viewParam name="dumy"/>
+			<!-- ViewParam do Omnifaces evita o uso do método set em mais de uma vez caso estivesse usando o ViewParam do JSF -->
+			<o:viewParam name="produto" value="#{cadastroProduto.produto}"/>
+			
 			<f:event listener="#{cadastroProduto.inicializar()}" type="preRenderView"/>
 		</f:metadata>
 		
@@ -19,7 +22,7 @@
 			<p:messages id="growl" autoUpdate="true"/>
 <!-- 			<p:growl id="msg" showDetail="false" life="3000"/> -->
 		
-			<h1>Novo Produto</h1>
+			<h1>#{cadastroProduto.isVerificaCadastroEdicaoProduto() ? 'Novo Produto' : 'Edição de Produto'}</h1>
 
 			<p:toolbar style="margin: 20px 0 0 0">
 				<p:toolbarGroup>

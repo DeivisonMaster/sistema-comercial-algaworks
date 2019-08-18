@@ -1,7 +1,6 @@
 package br.com.pedidovenda.repository;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
@@ -18,17 +17,22 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.pedidovenda.model.Produto;
 import br.com.pedidovenda.repository.filtro.ProdutoFiltro;
+import br.com.pedidovenda.util.JPAUtil;
 
 @Dependent
 public class ProdutoRepository implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Inject
+	//@Inject
 	private EntityManager entityManager;
+	
+	public ProdutoRepository() {
+		this.entityManager = new JPAUtil().getEntityManager();
+	}
 
 	
 	public void salvar(Produto produto) {
-		this.entityManager.persist(produto);
+		this.entityManager.merge(produto);
 	}
 
 	public Produto buscaPorSKU(Produto produto) {
@@ -54,6 +58,10 @@ public class ProdutoRepository implements Serializable{
 		}
 		
 		return criteria.addOrder(Order.asc("nome")).list();
+	}
+
+	public Produto buscaPorId(Long id) {
+		return this.entityManager.find(Produto.class, id);
 	}
 
 }

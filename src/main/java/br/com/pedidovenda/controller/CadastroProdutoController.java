@@ -40,6 +40,10 @@ public class CadastroProdutoController implements Serializable{
 
 		if(FacesUtil.isNotPostBack()) {
 			categorias = repositoryCategoria.buscarPorCategorias();
+			
+			if(this.categoriaSelecionada != null) {
+				carregarSubCategorias();
+			}
 		}
 	}
 
@@ -66,7 +70,15 @@ public class CadastroProdutoController implements Serializable{
 	}
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+		
+		if(this.produto != null) {
+			this.categoriaSelecionada = this.produto.getCategoria().getCategoriaPai();
+		}
 	}
+	public boolean isVerificaCadastroEdicaoProduto() {
+		return this.produto.getId() == null;
+	}
+	
 	public Collection<Categoria> getCategorias() {
 		return categorias;
 	}
