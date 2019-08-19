@@ -25,7 +25,7 @@ public class Produto {
 	private Long id;
 	
 	@NotBlank
-	@Size(max = 5)
+	//@Size(max = 5)
 	@Column(nullable = false, length = 50)
 	private String nome;
 	

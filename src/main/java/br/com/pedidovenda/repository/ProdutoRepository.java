@@ -32,7 +32,9 @@ public class ProdutoRepository implements Serializable{
 
 	
 	public void salvar(Produto produto) {
+		this.entityManager.getTransaction().begin();
 		this.entityManager.merge(produto);
+		this.entityManager.getTransaction().commit();
 	}
 
 	public Produto buscaPorSKU(Produto produto) {
