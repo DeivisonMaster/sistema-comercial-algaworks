@@ -72,17 +72,23 @@
 					<p:button outcome="/produto/CadastroProduto" icon="ui-icon-pencil" title="Editar">
 						<f:param name="produto" value="#{produto.id}"/>
 					</p:button>
-					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmarExclusao').show()"/>
+					<p:commandButton icon="ui-icon-trash" title="Excluir" 
+						oncomplete="PF('confirmarExclusao').show();" process="@this" update=":frmConsultaProduto:dlgConfirmaExclusao">
+						
+						<f:setPropertyActionListener value="#{consultaProduto.produtoSelecionado}" target="#{produto}" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 			
 			
-			<p:confirmDialog header="Exclusão de Produto" 
-				message="Tem certeza que deseja excluir o produto?"
+			<p:confirmDialog id="dlgConfirmaExclusao" header="Exclusão de Produto" 
+				message="Tem certeza que deseja excluir o produto #{consultaProduto.produtoSelecionado.sku}?"
 				widgetVar="confirmarExclusao">
 				
 				<p:button value="Não" onclick="confirmarExclusao.hide(); return false;"/>
-				<p:commandButton value="Sim" oncomplete="confirmarExclusao.hide(); "/>
+				
+				<p:commandButton value="Sim" oncomplete="confirmarExclusao.hide(); "
+					action="#{consultaProduto.excluir()}" process="@this" update=":frmConsultaProduto:idTblProdutos"/>
 			</p:confirmDialog>
 		</h:form>
 	</ui:define>

@@ -13,6 +13,7 @@ import javax.inject.Named;
 import br.com.pedidovenda.model.Produto;
 import br.com.pedidovenda.repository.ProdutoRepository;
 import br.com.pedidovenda.repository.filtro.ProdutoFiltro;
+import br.com.pedidovenda.util.jsf.FacesUtil;
 
 @Named("consultaProduto")
 @ViewScoped
@@ -21,6 +22,7 @@ public class ConsultaProdutoController implements Serializable{
 
 	private List<Produto> produtosFiltrados;
 	private ProdutoFiltro filtro;
+	private Produto produtoSelecionado;
 	
 	@Inject
 	private ProdutoRepository produtoRepository;
@@ -35,6 +37,13 @@ public class ConsultaProdutoController implements Serializable{
 		this.produtosFiltrados = produtoRepository.buscaPorProdutos(filtro);
 	}
 	
+	public void excluir() {
+		this.produtoRepository.excluiProduto(this.produtoSelecionado);
+		//this.produtosFiltrados.remove(this.produtoSelecionado)
+		
+		FacesUtil.addInfoMessage("Produto " + this.produtoSelecionado.getSku() + " excluido com sucesso!");
+	}
+	
 	public List<Produto> getProdutosFiltrados() {
 		this.produtosFiltrados = produtoRepository.buscaPorProdutos(filtro);
 		
@@ -42,5 +51,11 @@ public class ConsultaProdutoController implements Serializable{
 	}
 	public ProdutoFiltro getFiltro() {
 		return filtro;
+	}
+	public Produto getProdutoSelecionado() {
+		return produtoSelecionado;
+	}
+	public void setProdutoSelecionado(Produto produtoSelecionado) {
+		this.produtoSelecionado = produtoSelecionado;
 	}
 }

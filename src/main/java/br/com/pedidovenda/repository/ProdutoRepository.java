@@ -7,6 +7,7 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -17,7 +18,9 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.pedidovenda.model.Produto;
 import br.com.pedidovenda.repository.filtro.ProdutoFiltro;
+import br.com.pedidovenda.service.NegocioException;
 import br.com.pedidovenda.util.JPAUtil;
+import br.com.pedidovenda.util.Transacional;
 
 @Dependent
 public class ProdutoRepository implements Serializable{
@@ -64,6 +67,26 @@ public class ProdutoRepository implements Serializable{
 
 	public Produto buscaPorId(Long id) {
 		return this.entityManager.find(Produto.class, id);
+	}
+	
+	@Transacional
+	public void excluiProduto(Produto produto) {
+		try {
+			/* proposito de uso do flush():
+			 * 
+			 * caso haja alguma outra tabela no bd fazendo uso do produto (tb_pedido), 
+			 * uma exceção é lançada dentro do método, sem o flush(), a exceção seria 
+			 * lançada dentro do interceptador
+			 * */
+			
+			produto = buscaPorId(produto.getId());
+			this.entityManager.remove(produto); // setado para exclusão, aguardando: flush, commit
+			
+			this.entityManager.flush(); // pendencias no banco serão comitadas
+			
+		} catch (PersistenceException e) {
+			throw new NegocioException("Produto não pode ser excluído");
+		}
 	}
 
 }
