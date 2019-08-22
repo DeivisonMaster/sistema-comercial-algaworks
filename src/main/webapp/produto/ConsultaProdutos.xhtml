@@ -6,7 +6,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="titulo">Cadastro de Produtos</ui:define>
+	<ui:define name="tituloPagina">Consulta de Produtos</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form id="frmConsultaProduto" prependId="false">
@@ -85,10 +85,12 @@
 				message="Tem certeza que deseja excluir o produto #{consultaProduto.produtoSelecionado.sku}?"
 				widgetVar="confirmarExclusao">
 				
-				<p:button value="Não" onclick="confirmarExclusao.hide(); return false;"/>
+				<div style="margin: 0 auto; height: auto; width: 118px;">
+					<p:button value="Não" onclick="PF('confirmarExclusao').hide(); return false;"/>
 				
-				<p:commandButton value="Sim" oncomplete="confirmarExclusao.hide(); "
+					<p:commandButton value="Sim" oncomplete="confirmarExclusao.hide(); "
 					action="#{consultaProduto.excluir()}" process="@this" update=":frmConsultaProduto:idTblProdutos"/>
+				</div>
 			</p:confirmDialog>
 		</h:form>
 	</ui:define>

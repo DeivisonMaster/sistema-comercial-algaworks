@@ -23,21 +23,17 @@
 				<p:submenu label="Cadastros">
 					<p:menuitem value="Clientes" outcome="/cliente/CadastroCliente"/>
 					<p:menuitem value="Usuários" outcome="/usuario/CadastroUsuario"/>
-					
-					<p:separator/>
-					
+					<p:menuitem value="Pedido" outcome="/pedido/CadastroPedido"/>
+					<p:menuitem value="Produto" outcome="/produto/CadastroProduto"/>
 					<p:menuitem value="Categorias"/>
-					<p:menuitem value="Produtos" outcome="/produto/CadastroProduto"/>
 				</p:submenu>
 				
-				<p:submenu label="Pedidos">
-					<p:menuitem value="Cadastro de Pedido" outcome="/pedido/CadastroPedido"/>
-					<p:menuitem value="Consulta de Pedido" outcome="/pedido/ConsultaPedidos"/>
-					
-					<p:separator/>
-					
-					<p:menuitem value="Categorias"/>
+				<p:submenu label="Consultas">
+					<p:menuitem value="Clientes" outcome="/cliente/ConsultaCliente"/>
+					<p:menuitem value="Usuários" outcome="/usuario/ConsultaUsuario"/>
+					<p:menuitem value="Pedidos" outcome="/pedido/ConsultaPedidos"/>
 					<p:menuitem value="Produtos" outcome="/produto/ConsultaProdutos"/>
+					<p:menuitem value="Categorias"/>
 				</p:submenu>
 				
 				<p:menuitem value="Sair" />
