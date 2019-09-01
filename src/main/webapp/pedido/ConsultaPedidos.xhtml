@@ -15,7 +15,7 @@
 
 			<p:toolbar style="margin: 20px 0 0 0;">
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" />
+					<p:commandButton value="Pesquisar" action="#{consultaPedido.pesquisar()}" update="@form"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
@@ -25,66 +25,67 @@
 
 
 			<p:panelGrid columns="2" id="painel"
-				style="width: 100%; 
-	 		margin-top: 20px;"
-				columnClasses="rotulo, campo">
+				style="width: 100%;  margin-top: 20px;" columnClasses="rotulo, campo">
 
 				<p:outputLabel value="Número"/>
 				<h:panelGroup>
-					<p:inputText size="10" /> 
+					<p:inputText size="10" value="#{consultaPedido.filtro.numeroDe}"/> 
 					 a
-					<p:inputText size="10" />
+					<p:inputText size="10" value="#{consultaPedido.filtro.numeroAte}"/>
 				</h:panelGroup>
 				
 				
 				<p:outputLabel value="Data de Criação"/>
 				<h:panelGroup>
-					<p:calendar size="10" pattern="dd/MM/yyyy"/> 
+					<p:calendar size="10" pattern="dd/MM/yyyy" value="#{consultaPedido.filtro.dataCriacaoDe}"/> 
 					 a
-					<p:calendar size="10" pattern="dd/MM/yyyy"/>
+					<p:calendar size="10" pattern="dd/MM/yyyy" value="#{consultaPedido.filtro.dataCriacaoAte}"/>
 				</h:panelGroup>
 
 				<p:outputLabel value="Vendedor"/>
-				<p:inputText size="40"/>
+				<p:inputText size="40" value="#{consultaPedido.filtro.nomeVendedor}"/>
 				
 				<p:outputLabel value="Cliente"/>
-				<p:inputText size="40" /> 
+				<p:inputText size="40" value="#{consultaPedido.filtro.nomeCliente}"/> 
 				
 				<p:outputLabel value="Status"/>
-				<p:selectManyCheckbox>
-					<f:selectItem itemLabel="Orçamento"/>
-					<f:selectItem itemLabel="Emitido"/>
-					<f:selectItem itemLabel="Cancelado"/>
+				<p:selectManyCheckbox value="#{consultaPedido.filtro.status}">
+					<f:selectItems var="status" value="#{consultaPedido.status}"
+						itemLabel="#{status.descricao}" itemValue="#{status}"/>
 				</p:selectManyCheckbox>
 			</p:panelGrid>
 
-			<p:dataTable id="listaProdutos" var="produto"
-				value="#{controllerPesquisaProduto.produtosFiltrados}"
+			<p:dataTable id="listaProdutos" var="pedido"
+				value="#{consultaPedido.pedidosFiltrados}"
 				paginator="true" emptyMessage="Nenhum produto encontrado" rows="10"
 				paginatorAlwaysVisible="false" paginatorPosition="bottom">
 
 				<p:column headerText="Numero" style="text-align: center;"
 					width="100px;">
-					<h:outputText value="12345" />
+					<h:outputText value="#{pedido.id}" />
 				</p:column>
 
 				<p:column headerText="Vendedor">
-					<h:outputText value="José Júnior" />
+					<h:outputText value="#{pedido.vendedor.nome}" />
 				</p:column>
 
 				<p:column headerText="Data de Criação" style="text-align: center;" 
 						width="140px">
-					<h:outputText value="05/06/2013" />
+					<h:outputText value="#{pedido.dataCriacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Valor total" style="text-align: right;"
 					width="120px;">
-					<h:outputText value="R$ 1.230,44" />
+					<h:outputText value="#{pedido.valorTotal}">
+						<f:convertNumber type="currency"/>
+					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Status"
 					width="100px;">
-					<h:outputText value="Emitido" />
+					<h:outputText value="#{pedido.status.descricao}" />
 				</p:column>
 
 				<p:column style="text-align: center;" width="50px">

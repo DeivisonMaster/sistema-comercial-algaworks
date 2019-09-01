@@ -24,4 +24,29 @@ insert into categoria (descricao, categoria_pai_id) values ('Racks', 3);
 insert into categoria (descricao, categoria_pai_id) values ('Sofás', 3);
 
 
+### USUARIO
+INSERT INTO usuario (id, email, nome, senha) VALUES (1, "admin@pdv.com.br", "admin", "123");
+
+
+### CLIENTE
+INSERT INTO cliente (id, documento_receita_federal, email, nome, tipo_pessoa) 
+VALUES (1, "", "carlos@gmail.com", "carlos", "FISICA");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

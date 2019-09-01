@@ -23,7 +23,7 @@ public class JPAUtil implements Serializable {
 	}
 	
 	@Produces
-	@RequestScoped
+	@Dependent //RequestScoped
 	public EntityManager getEntityManager() {
 		return entityManagerFactory.createEntityManager();
 	}

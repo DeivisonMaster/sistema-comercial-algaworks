@@ -86,10 +86,10 @@
 				widgetVar="confirmarExclusao">
 				
 				<div style="margin: 0 auto; height: auto; width: 118px;">
-					<p:button value="Não" onclick="PF('confirmarExclusao').hide(); return false;"/>
-				
 					<p:commandButton value="Sim" oncomplete="confirmarExclusao.hide(); "
 					action="#{consultaProduto.excluir()}" process="@this" update=":frmConsultaProduto:idTblProdutos"/>
+					
+					<p:button value="Não" onclick="PF('confirmarExclusao').hide(); return false;"/>
 				</div>
 			</p:confirmDialog>
 		</h:form>
