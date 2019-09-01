@@ -12,33 +12,39 @@
 					margin-top: 20px;"
 		columnClasses="rotulo, campo, rotulo, campo">
 
-		<p:outputLabel value="Número" for="numero" />
-		<p:inputText id="numero" size="30" value="#{cadastroPedido.pedido.id}"/>
+		<p:outputLabel value="Número" for="numero" rendered="#{cadastroPedido.pedido.existente}"/>
+		<h:outputText id="numero" size="30" value="#{cadastroPedido.pedido.id}" rendered="#{cadastroPedido.pedido.existente}"/>
 		
-		<p:outputLabel value="Data de cadastro" for="dataCriacao"/>
-		<p:inputText id="dataCriacao" size="30" value="#{cadastroPedido.pedido.dataCriacao}">
+		<p:outputLabel value="Data de cadastro" for="dataCriacao" rendered="#{cadastroPedido.pedido.existente}"/>
+		<h:outputText id="dataCriacao" size="30" value="#{cadastroPedido.pedido.dataCriacao}" rendered="#{cadastroPedido.pedido.existente}">
 			<f:convertDateTime pattern="dd/MM/yyyy"/>
-		</p:inputText>
+		</h:outputText>
 
 		<p:outputLabel value="Status" for="status"/>
-		<p:inputText id="status" size="30" value="#{cadastroPedido.pedido.status}"/>
+		<h:outputText id="status" size="30" value="#{cadastroPedido.pedido.status.descricao}"/>
 
 		<p:outputLabel value="Vendedor" for="vendedor"/>
 		<p:selectOneMenu id="vendedor" value="#{cadastroPedido.pedido.vendedor}">
 			<f:selectItem itemLabel="Selecione" />
+			<f:selectItems var="vendedor" value="#{cadastroPedido.vendedores}" itemLabel="#{vendedor.nome}" itemValue="#{vendedor}"/>
 		</p:selectOneMenu>
 
 		<p:outputLabel value="Cliente" for="cliente" />
 		<p:autoComplete id="cliente" size="40" dropdown="true"
-			value="#{cadastroPedido.pedido.cliente}"/>
+			value="#{cadastroPedido.pedido.cliente}" 
+			completeMethod="#{cadastroPedido.completarCliente}"
+			var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente}"
+			forceSelection="true"/>
 
 		<p:outputLabel value="Forma de Pagamento" for="formaPagamento"/>
 		<p:selectOneMenu id="formaPagamento" value="#{cadastroPedido.pedido.formaPagamento}">
 			<f:selectItem itemLabel="Selecione" />
+			<f:selectItems var="formaPgto" value="#{cadastroPedido.formasPagamento}" 
+				itemLabel="#{formaPgto.descricao}" itemValue="#{formaPgto}"/>
 		</p:selectOneMenu>
 		
 		<p:outputLabel value="Valor do Frete" for="valorFrete"/>
-		<p:inputText id="valorFrete" size="30" value="#{cadastroPedido.pedido.valorFrete}">
+		<p:inputText id="valorFrete" size="30" value="#{cadastroPedido.pedido.valorFrete}" styleClass="moeda">
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
 		</p:inputText>
 		
@@ -46,12 +52,13 @@
 		<p:inputText id="subTotal" size="30" style="font-weight: bold"/>
 	
 		<p:outputLabel value="Valor de desconto" for="valorDesconto"/>
-		<p:inputText id="valorDesconto" size="30">
+		<p:inputText id="valorDesconto" size="30" value="#{cadastroPedido.pedido.valorDesconto}" styleClass="moeda">
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
 		</p:inputText>
 		
 		<p:outputLabel value="Total do Pedido" for="totalPedido" style="font-weight: bold; font-size: 1.1em"/>
-		<p:inputText id="totalPedido" size="30" style="font-weight: bold; font-size: 1.1em">
+		<p:inputText id="totalPedido" size="30" style="font-weight: bold; font-size: 1.1em"
+			value="#{cadastroPedido.pedido.valorTotal}">
 			<f:convertNumber type="currency"/>
 		</p:inputText>
 	</p:panelGrid>

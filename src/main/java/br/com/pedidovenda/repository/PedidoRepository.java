@@ -15,12 +15,17 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.pedidovenda.model.Pedido;
 import br.com.pedidovenda.repository.filtro.PedidoFiltro;
+import br.com.pedidovenda.util.JPAUtil;
 
 public class PedidoRepository implements Serializable{
 	private static final long serialVersionUID = 1L; 
 	
 	@Inject
 	private EntityManager entityManager;
+	
+	public PedidoRepository() {
+		this.entityManager = new JPAUtil().getEntityManager();
+	}
 	
 	public List<Pedido> pedidosFiltrados(PedidoFiltro filtro){
 		Session session = this.entityManager.unwrap(Session.class);
@@ -54,5 +59,15 @@ public class PedidoRepository implements Serializable{
 		
 		return criteria.addOrder(Order.asc("id")).list();
 		
+	}
+
+	public void salvar(Pedido pedido) {
+		this.entityManager.getTransaction().begin();
+		this.entityManager.merge(pedido);
+		this.entityManager.getTransaction().commit();
+	}
+
+	public Pedido buscaPorId(Long id) {
+		return this.entityManager.find(Pedido.class, id);
 	}
 }

@@ -4,16 +4,25 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui">
 
+	<f:metadata>
+		<!-- recupera o objeto para edição com omnifaces -->
+		<o:viewParam name="pedido" value="#{cadastroPedido.pedido}"/>
+		
+		<f:event listener="#{cadastroPedido.inicializar()}" type="preRenderView"/>
+	</f:metadata>
 
-	<ui:define name="tituloPagina">Cadastro de Pedido</ui:define>
+	<ui:define name="tituloPagina">
+		#{cadastroPedido.isVerificaCadastroEdicaoPedido() ? 'Cadastro de Pedido' : 'Edição de Pedido'}
+	</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form id="idCadastroPedido" prependId="false">
-			<h1>Cadastro de Pedido</h1>
+			<h1>#{cadastroPedido.isVerificaCadastroEdicaoPedido() ? 'Cadastro de Pedido' : 'Edição de Pedido'}</h1>
 			
-			<p:messages id="growl" autoUpdate="true"/>
+			<p:messages id="growl" autoUpdate="true" closable="true"/>
 
 			<ui:include src="/pedido/BotoesPedido.xhtml" />
 
@@ -21,7 +30,7 @@
 
 			<p:tabView style="margin-top: 20px;">
 				<p:tab title="Itens">
-					<ui:include src="/pedido/ItensPedido.xhtml" />
+<!-- 					<ui:include src="/pedido/ItensPedido.xhtml" /> -->
 				</p:tab>
 
 				<p:tab title="Dados de Entrega">

@@ -11,7 +11,7 @@
 			<p:button value="Novo" outcome="/pedido/CadastroPedido" />
 			
 			<p:commandButton value="Salvar" 
-				action="#{cadastroPedido.salvar()}" process="@form" update="growl"/>
+				action="#{cadastroPedido.salvar()}" process="@form" update="@form"/>
 		</p:toolbarGroup>
 
 		<p:toolbarGroup align="right">

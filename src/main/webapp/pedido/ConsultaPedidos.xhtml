@@ -89,7 +89,9 @@
 				</p:column>
 
 				<p:column style="text-align: center;" width="50px">
-					<p:button icon="ui-icon-pencil" title="Editar" />
+					<p:button icon="ui-icon-pencil" title="Editar" outcome="/pedido/CadastroPedido">
+						<f:param name="pedido" value="#{pedido.id}"/>
+					</p:button>
 					<p:commandButton icon="ui-icon-trash" title="Excluir" />
 				</p:column>
 
