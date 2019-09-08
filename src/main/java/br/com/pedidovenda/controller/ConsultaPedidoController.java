@@ -31,6 +31,7 @@ public class ConsultaPedidoController implements Serializable {
 	
 	public void pesquisar() {
 		this.pedidosFiltrados = this.pedidoRepository.pedidosFiltrados(this.filtro);
+		this.filtro = new PedidoFiltro();
 	}
 	
 	public StatusPedido[] getStatus(){

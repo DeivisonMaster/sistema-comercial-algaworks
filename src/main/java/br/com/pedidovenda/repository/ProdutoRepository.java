@@ -89,6 +89,12 @@ public class ProdutoRepository implements Serializable{
 		}
 	}
 
+
+	public List<Produto> buscarPorNome(String nome) {
+		return this.entityManager.createQuery("from Produto where upper(nome) like :nome", Produto.class)
+				.setParameter("nome", nome.toUpperCase() + "%").getResultList();
+	}
+
 }
 
 

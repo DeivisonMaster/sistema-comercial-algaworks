@@ -9,17 +9,19 @@
 	<ui:define name="tituloPagina">Consulta de Usuários</ui:define>
 
 	<ui:define name="conteudo">
-		<h:form id="idCadastroCliente" prependId="false">
+		<h:form id="frmCadastroUsuario" prependId="false">
+			
+			<p:messages id="growl" autoUpdate="true" closable="true" />
 		
 			<h1>Pesquisa de Usuário</h1>
 
 			<p:toolbar style="margin: 20px 0 0 0;">
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" />
+					<p:commandButton value="Pesquisar" action="#{consultaUsuario.pesquisar()}"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Novo" outcome="/cliente/ConsultaCliente" />
+					<p:button value="Novo" outcome="/usuario/CadastroUsuario" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -33,26 +35,44 @@
 			</p:panelGrid>
 			
 			
-			<p:dataTable var="produto"
-				value="#{consultaPedidoController.produtosFiltrados}"
+			<p:dataTable id="tblUsuarios" var="usuario"
+				value="#{consultaUsuario.usuarios}"
 				style="margin:20px 0 0 0" emptyMessage="Nenhum produto encontrado."
 				rows="15" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
 
-				<p:column headerText="Nome"
-					style="text-align: center; width: 400px;">
-					<h:outputText value="R$ 1.230,44" />
+				<p:column headerText="Nome" style="text-align: center; width: 400px;">
+					<h:outputText value="#{usuario.nome}" />
 				</p:column>
 				
 				<p:column headerText="E-mail" style="text-align: center; width: 100px;">
-					<h:outputText value="Emitido" />
+					<h:outputText value="#{usuario.email}" />
 				</p:column>
 
 				<p:column style="text-align: center; width: 50px;">
-					<p:button icon="ui-icon-pencil" title="Editar" />
-					<p:commandButton icon="ui-icon-trash" title="Excluir" />
+					<p:button outcome="/usuario/CadastroUsuario" icon="ui-icon-pencil" title="Editar">
+						<f:param name="usuario" value="#{usuario.id}"/>
+					</p:button>
+					
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						oncomplete="PF('exclusaoUsuario').show();" process="@this" 
+						update=":frmCadastroUsuario:dlgExclusaoUsuario">
+						
+						<f:setPropertyActionListener value="#{consultaUsuario.usuarioSelecionado}" target="#{usuario}" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+			
+			<p:confirmDialog id="dlgExclusaoUsuario" header="Exclusão de Usuário" 
+				message="Deseja excluir o usuário selecionado?" widgetVar="exclusaoUsuario">
+				
+				<div style="margin: 0 auto; height: auto; width: 118px;">
+					<p:button value="Não" onclick="PF('exclusaoUsuario').hide();"/>
+				
+					<p:commandButton value="Sim" action="#{consultaUsuario.excluirUsuario()}" 
+						process="@this" update=":frmCadastroUsuario:tblUsuarios" onclick="PF('exclusaoUsuario').hide(); return false"/>
+				</div>
+			</p:confirmDialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

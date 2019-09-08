@@ -4,52 +4,68 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://omnifaces.org/ui">
 
 
 	<ui:define name="tituloPagina">Cadastro de Usuário</ui:define>
 
 	<ui:define name="conteudo">
+		<f:metadata>
+			<o:viewParam name="produto" value="#{cadastroUsuario.usuario}" />
+		</f:metadata>
+	
 		<h:form id="idCadastroUsuario" prependId="false">
-			
+			<p:messages id="growl" autoUpdate="true" closable="true" />
+
 			<h1>Cadastro de Usuário</h1>
-			
+
 			<p:toolbar style="margin: 20px 0 0 0;">
 				<p:toolbarGroup>
-					<p:button value="Novo" outcome="/usuario/CadastroUsuario"/>
-					<p:commandButton value="Salvar" id="botaoSalvar"/>
+					<p:button value="Novo" outcome="/usuario/CadastroUsuario" />
+					<p:commandButton value="Salvar" id="botaoSalvar"
+						action="#{cadastroUsuario.cadastrar()}" process="@form"
+						update="@form growl" />
 				</p:toolbarGroup>
-				
+
 				<p:toolbarGroup align="right">
-					<p:button value="Pesquisa"/>
+					<p:button value="Pesquisa" outcome="/usuario/ConsultaUsuario" />
 				</p:toolbarGroup>
 			</p:toolbar>
-			
-			
-			<p:panelGrid columns="2" id="painel" style="width: 100%; 
-	 			margin-top: 20px;" columnClasses="rotulo, campo">
-	 			
-				<p:outputLabel value="Nome" for="nome"/>
-				<p:inputText id="nome" size="50"/>
-				
-				<p:outputLabel value="E-mail" for="email"/>
-				<p:inputText id="email" size="50"/>
-				
-				<p:outputLabel value="Senha" for="senha"/>
-				<p:password id="senha" size="30"/>
-	
+
+
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; 
+	 			margin-top: 20px;"
+				columnClasses="rotulo, campo">
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="50"
+					value="#{cadastroUsuario.usuario.nome}" required="true"
+					requiredMessage="O campo nome é de preenchimento obrigatório" />
+
+				<p:outputLabel value="E-mail" for="email" />
+				<p:inputText id="email" size="50"
+					value="#{cadastroUsuario.usuario.email}" required="true"
+					requiredMessage="O campo email é de preenchimento obrigatório" />
+
+				<p:outputLabel value="Senha" for="senha" />
+				<p:password id="senha" size="30"
+					value="#{cadastroUsuario.usuario.senha}" required="true"
+					requiredMessage="O campo Senha é de preenchimento obrigatório" />
+
 				<p:selectOneMenu id="idGrupoUsuario" style="width: 70px;">
-					<f:selectItem itemLabel="Selecione"/>
+					<f:selectItem itemLabel="Selecione" />
 				</p:selectOneMenu>
-				<p:commandButton value="Adicionar Grupo"/>
-				
+				<p:commandButton value="Adicionar Grupo" />
+
 			</p:panelGrid>
-			
-			<p:spacer/>
-			
+
+			<p:spacer />
+
 			<p:dataTable>
-				<p:column headerText="Grupo" style="text-align: left"/>
-				
+				<p:column headerText="Grupo" style="text-align: left" />
+
 				<p:column style="text-align: center; width: 50px;">
 					<p:commandButton icon="ui-icon-trash" title="Excluir" />
 				</p:column>

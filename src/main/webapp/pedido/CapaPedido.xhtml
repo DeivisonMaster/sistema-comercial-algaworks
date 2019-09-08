@@ -8,9 +8,7 @@
 
 
 	<p:panelGrid columns="4" id="painel"
-		style="width: 100%; 
-					margin-top: 20px;"
-		columnClasses="rotulo, campo, rotulo, campo">
+		style="width: 100%; margin-top: 20px;" columnClasses="rotulo, campo, rotulo, campo">
 
 		<p:outputLabel value="Número" for="numero" rendered="#{cadastroPedido.pedido.existente}"/>
 		<h:outputText id="numero" size="30" value="#{cadastroPedido.pedido.id}" rendered="#{cadastroPedido.pedido.existente}"/>
@@ -44,23 +42,34 @@
 		</p:selectOneMenu>
 		
 		<p:outputLabel value="Valor do Frete" for="valorFrete"/>
-		<p:inputText id="valorFrete" size="30" value="#{cadastroPedido.pedido.valorFrete}" styleClass="moeda">
+		<p:inputText id="valorFrete" size="30" 
+			value="#{cadastroPedido.pedido.valorFrete}" styleClass="moeda">
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+			
+			<p:ajax event="change" process="@this" update="totalPedido" 
+				listener="#{cadastroPedido.recalcularPedido()}"/>
 		</p:inputText>
 		
 		<p:outputLabel value="Subtotal" for="subTotal" style="font-weight: bold"/>
-		<p:inputText id="subTotal" size="30" style="font-weight: bold"/>
+		<h:outputText id="subTotal" size="30" style="font-weight: bold"
+			value="#{cadastroPedido.pedido.valorSubTotal}">
+			
+			<f:convertNumber type="currency"/>	
+		</h:outputText>
 	
 		<p:outputLabel value="Valor de desconto" for="valorDesconto"/>
 		<p:inputText id="valorDesconto" size="30" value="#{cadastroPedido.pedido.valorDesconto}" styleClass="moeda">
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+			
+			<p:ajax event="change" process="@this" update="totalPedido" 
+				listener="#{cadastroPedido.recalcularPedido()}"/>
 		</p:inputText>
 		
 		<p:outputLabel value="Total do Pedido" for="totalPedido" style="font-weight: bold; font-size: 1.1em"/>
-		<p:inputText id="totalPedido" size="30" style="font-weight: bold; font-size: 1.1em"
+		<h:outputText id="totalPedido" size="30" style="font-weight: bold; font-size: 1.1em"
 			value="#{cadastroPedido.pedido.valorTotal}">
 			<f:convertNumber type="currency"/>
-		</p:inputText>
+		</h:outputText>
 	</p:panelGrid>
 </ui:composition>
 

@@ -29,15 +29,15 @@
 		<p:inputText id="entregaComplemento" size="50" 
 			value="#{cadastroPedido.pedido.enderecoEntrega.complemento}"/>
 		
-		<p:outputLabel value="Cidade"/>
+		<p:outputLabel value="Cidade" for="entregaCidade"/>
 		<p:inputText id="entregaCidade" size="30"
 			value="#{cadastroPedido.pedido.enderecoEntrega.cidade}"/>
 		
-		<p:outputLabel value="Estado"/>
+		<p:outputLabel value="Estado" for="entregaEstado"/>
 		<p:inputText id="entregaEstado" size="20"
 			value="#{cadastroPedido.pedido.enderecoEntrega.uf}"/>
 		
-		<p:outputLabel value="CEP"/>
+		<p:outputLabel value="CEP" for="entregaCEP"/>
 		<p:inputText id="entregaCEP" size="10" 
 			value="#{cadastroPedido.pedido.enderecoEntrega.cep}"/>
 	</p:panelGrid>

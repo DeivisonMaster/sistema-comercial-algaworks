@@ -19,7 +19,7 @@
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Novo" outcome="/produto/ConsultaProdutos" />
+					<p:button value="Novo" outcome="/pedido/CadastroPedido" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -61,37 +61,38 @@
 				paginatorAlwaysVisible="false" paginatorPosition="bottom">
 
 				<p:column headerText="Numero" style="text-align: center;"
-					width="100px;">
+					width="5%">
 					<h:outputText value="#{pedido.id}" />
 				</p:column>
 
-				<p:column headerText="Vendedor">
+				<p:column headerText="Vendedor" style="text-align: center;">
 					<h:outputText value="#{pedido.vendedor.nome}" />
 				</p:column>
 
 				<p:column headerText="Data de Criação" style="text-align: center;" 
-						width="140px">
+						width="15%">
 					<h:outputText value="#{pedido.dataCriacao}">
 						<f:convertDateTime pattern="dd/MM/yyyy"/>
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Valor total" style="text-align: right;"
+				<p:column headerText="Valor total" style="text-align: center;"
 					width="120px;">
 					<h:outputText value="#{pedido.valorTotal}">
 						<f:convertNumber type="currency"/>
 					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Status"
-					width="100px;">
+				<p:column headerText="Status" style="text-align: center;"
+					width="100px;" >
 					<h:outputText value="#{pedido.status.descricao}" />
 				</p:column>
 
-				<p:column style="text-align: center;" width="50px">
+				<p:column style="text-align: center;" width="10%" headerText="Ações">
 					<p:button icon="ui-icon-pencil" title="Editar" outcome="/pedido/CadastroPedido">
 						<f:param name="pedido" value="#{pedido.id}"/>
 					</p:button>
+					
 					<p:commandButton icon="ui-icon-trash" title="Excluir" />
 				</p:column>
 

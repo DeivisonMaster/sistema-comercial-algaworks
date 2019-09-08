@@ -33,5 +33,20 @@ public class UsuarioRepository implements Serializable{
 		return usuarioPesquisado;
 		
 	}
+
+
+	public void excluirUsuario(Usuario usuarioSelecionado) {
+		this.entityManager.getTransaction().begin();
+		this.entityManager.remove(usuarioSelecionado);
+		this.entityManager.getTransaction().commit();
+	}
+
+
+	public void salva(Usuario usuario) {
+		this.entityManager.getTransaction().begin();
+		this.entityManager.merge(usuario);
+		this.entityManager.getTransaction().commit();
+		
+	}
 	
 }

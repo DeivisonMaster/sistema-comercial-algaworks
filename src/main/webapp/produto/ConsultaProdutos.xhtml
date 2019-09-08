@@ -11,6 +11,8 @@
 	<ui:define name="conteudo">
 		<h:form id="frmConsultaProduto" prependId="false">
 		
+			<p:messages id="growl" autoUpdate="true" closable="true"/>
+		
 			<h1>Consulta de Produto</h1>
 
 			<p:toolbar style="margin-top: 20px;">
@@ -70,10 +72,13 @@
 
 				<p:column style="text-align: center; width: 4%;">
 					<p:button outcome="/produto/CadastroProduto" icon="ui-icon-pencil" title="Editar">
+					
+					  	<!-- TRANSPORTA O OBJETO PARA TELA DE EDIÇÃO -->
 						<f:param name="produto" value="#{produto.id}"/>
 					</p:button>
 					<p:commandButton icon="ui-icon-trash" title="Excluir" 
-						oncomplete="PF('confirmarExclusao').show();" process="@this" update=":frmConsultaProduto:dlgConfirmaExclusao">
+						oncomplete="PF('confirmarExclusao').show();" process="@this" 
+						update=":frmConsultaProduto:dlgConfirmaExclusao">
 						
 						<f:setPropertyActionListener value="#{consultaProduto.produtoSelecionado}" target="#{produto}" />
 					</p:commandButton>

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "item_pedido")
@@ -20,10 +21,10 @@ public class ItemPedido {
 	private Long id;
 	
 	@Column(nullable = false, length = 3)
-	private Integer quantidade;
+	private Integer quantidade = 1;
 	
 	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
-	private BigDecimal valorUnitario;
+	private BigDecimal valorUnitario = BigDecimal.ZERO;
 	
 	@ManyToOne
 	@JoinColumn(name = "produto_id", nullable = false)
@@ -63,6 +64,29 @@ public class ItemPedido {
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
+	
+	
+	@Transient
+	public BigDecimal getValorTotal() {
+		return this.getValorUnitario().multiply(new BigDecimal(this.getQuantidade()));
+	}
+	
+	@Transient
+	public boolean produtoAssociado() {
+		return this.getProduto() != null && this.getProduto().getId() != null;
+	}
+	
+	@Transient
+	public boolean isEstoqueSuficiente() {
+		return this.getPedido().isEmitido() || this.getProduto().getId() == null 
+				|| this.getProduto().getQuantidadeEstoque() >= this.getQuantidade();  
+	}
+	
+	@Transient
+	public boolean isEstoqueInsuficiente() {
+		return !this.isEstoqueSuficiente();  
+	}
+	
 	
 	
 	@Override

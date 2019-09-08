@@ -140,6 +140,23 @@
 		</dependency>
 		
 		
+		<!-- requerido para envio de emails -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.outjected</groupId> -->
+<!-- 			<artifactId>simple-email</artifactId> -->
+<!-- 			<version>0.1.2-SNAPSHOT</version> -->
+<!-- 			<scope>compile</scope> -->
+<!-- 		</dependency> -->
+		
+		<!-- requerido para envio de emails -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.hibernate</groupId> -->
 <!-- 			<artifactId>hibernate-core</artifactId> -->

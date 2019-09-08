@@ -7,30 +7,63 @@
       xmlns:p="http://primefaces.org/ui"> 
 
 
-	<p:dataTable id="tabelaItens" emptyMessage="Não há pedidos">
+	<p:dataTable id="tabelaItens" emptyMessage="Não há pedidos"
+		var="item" value="#{cadastroPedido.pedido.itens}" rowIndexVar="linha">
 		<p:column headerText="SKU" style="width: 100px; text-align: center;">
 			<p:inputText size="8"/>
 		</p:column>
 		<p:column headerText="Produto">
-			<p:autoComplete styleClass="produto-tabela"/>
+			<h:outputText value="#{item.produto.nome}" rendered="#{item.produtoAssociado()}"/>
+		
+			<p:autoComplete styleClass="produto-tabela" value="#{cadastroPedido.produtoLinhaEditavel}"
+				completeMethod="#{cadastroPedido.completarProduto}"
+				var="produto" itemLabel="#{produto.nome}" itemValue="#{produto}"
+				forceSelection="true" rendered="#{not item.produtoAssociado()}">
+				
+				<p:ajax event="itemSelect" update="tabelaItens :idCadastroPedido:totalPedido :idCadastroPedido:subTotal"
+					listener="#{cadastroPedido.carregarProdutoLinhaEditavel()}"/>	
+			</p:autoComplete>
 		</p:column>
-		<p:column headerText="Valor Unitário" style="width: 100px; text-align: right;">
-			<p:inputText size="8"/>
+		<p:column headerText="Valor Unitário" style="width: 100px; text-align: center;">
+			<h:outputText size="8" value="#{item.valorUnitario}">
+				<f:convertNumber type="currency"/>
+			</h:outputText>
 		</p:column>
 		<p:column headerText="Quantidade" style="width: 100px; text-align: center;">
-			<p:inputText size="8"/>
+			<p:inputText size="8" value="#{item.quantidade}">
+			
+				<p:ajax event="change" process="@this"
+					update="tabelaItens :idCadastroPedido:totalPedido :idCadastroPedido:subTotal"
+					listener="#{cadastroPedido.atualizarQuantidade(item, linha)}"/>
+			
+			</p:inputText>
 		</p:column>
 		<p:column headerText="Estoque" style="width: 100px; text-align: center;">
-			<p:inputText size="8"/>
+			<h:outputText size="8" value="#{item.produto.quantidadeEstoque}" 
+				style="#{item.estoqueInsuficiente ? 'color: red': ''}"/>
+				
+				<h:graphicImage library="images" name="alerta-jpg.jpg" id="semEstoque"
+					style="vertical-align: bottom; margin-left: 5px;"
+					rendered="#{item.estoqueInsuficiente}" width="15px" height="15px"/>
+					
+				<p:tooltip for="semEstoque" rendered="#{item.estoqueInsuficiente}"/>
 		</p:column>
-		<p:column headerText="Valor Total" style="width: 100px; text-align: right;">
-			<p:inputText size="8"/>
+		<p:column headerText="Valor Total" style="width: 15%; text-align: center;">
+			<h:outputText size="8" value="#{item.valorTotal}">
+				<f:convertNumber type="currency"/>
+			</h:outputText>
 		</p:column>
 		
 		<p:columnGroup type="footer">
 			<p:row>
 				<p:column colspan="5" footerText="Subtotal" style="text-align: right;"/>
-				<p:column footerText="R$ 0,00" style="text-align: right;"/>
+				<p:column style="text-align: right;">
+					<f:facet name="footer">
+						<h:outputText value="#{cadastroPedido.pedido.valorSubTotal}">
+							<f:convertNumber type="currency"/>
+						</h:outputText>
+					</f:facet>
+				</p:column>
 			</p:row>
 		</p:columnGroup>
 	</p:dataTable>

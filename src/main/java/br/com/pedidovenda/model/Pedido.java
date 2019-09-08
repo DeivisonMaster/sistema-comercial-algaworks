@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -80,7 +81,7 @@ public class Pedido {
 	private EnderecoEntrega enderecoEntrega;
 	
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Collection<ItemPedido> itens = new ArrayList<>();
+	private List<ItemPedido> itens = new ArrayList<>();
 	
 	
 	
@@ -167,11 +168,42 @@ public class Pedido {
 	public void setEnderecoEntrega(EnderecoEntrega enderecoEntrega) {
 		this.enderecoEntrega = enderecoEntrega;
 	}
-	public Collection<ItemPedido> getItens() {
+	public List<ItemPedido> getItens() {
 		return itens;
 	}
-	public void setItens(Collection<ItemPedido> itens) {
+	public void setItens(List<ItemPedido> itens) {
 		this.itens = itens;
+	}
+	
+	public void recalcularValorValorTotal() {
+		BigDecimal total = BigDecimal.ZERO;
+		
+		total = total.add(this.getValorFrete().subtract(this.getValorDesconto()));
+		
+		for (ItemPedido item : this.getItens()) {
+			if(item.getProduto() != null && item.getProduto().getId()!= null) {
+				total = total.add(item.getValorTotal());
+			}
+		}
+		
+		this.setValorTotal(total);
+	}
+	
+	@Transient
+	public BigDecimal getValorSubTotal() {
+		return this.getValorTotal().subtract(this.getValorFrete().add(this.getValorDesconto()));
+	}
+	
+	/** 
+	 * @author Deivison
+	 * @description remove o primeiro item da lista itens que será nulo 
+	 * */
+	public void removerItemVazio() {
+		ItemPedido primeiroItem = this.getItens().get(0);
+		
+		if(primeiroItem != null && primeiroItem.getProduto().getId() == null) {
+			this.getItens().remove(0);
+		}
 	}
 	
 	@Override
@@ -181,6 +213,30 @@ public class Pedido {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+	
+	public void adicionarItemVazio() {
+		if(this.isOrcamento()) {
+			Produto produto = new Produto();
+			produto.setQuantidadeEstoque(1);
+			
+			ItemPedido itemPedido = new ItemPedido();
+			itemPedido.setProduto(produto);
+			itemPedido.setPedido(this);
+			
+			this.getItens().add(0, itemPedido);
+		}
+	}
+	
+	@Transient
+	public boolean isOrcamento() {
+		return StatusPedido.ORCAMENTO.equals(this.getStatus());
+	}
+	
+	@Transient
+	public boolean isValorTotalNegativo() {
+		return this.getValorTotal().compareTo(BigDecimal.ZERO) < 0;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -197,6 +253,15 @@ public class Pedido {
 			return false;
 		return true;
 	}
+
+	@Transient
+	public boolean isEmitido() {
+		return StatusPedido.EMITIDO.equals(this.getStatus());
+	}
+
+	
+
+
 	
 	
 	
