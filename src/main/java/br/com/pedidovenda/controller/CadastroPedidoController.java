@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Produces;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -81,6 +82,10 @@ public class CadastroPedidoController implements Serializable{
 		} finally {
 			this.pedido.adicionarItemVazio();
 		}
+	}
+	
+	public void pedidoAlterado(@Observes PedidoAlteradoEvent event) {
+		this.pedido = event.getPedido();
 	}
 	
 	public void carregarProdutoLinhaEditavel() {

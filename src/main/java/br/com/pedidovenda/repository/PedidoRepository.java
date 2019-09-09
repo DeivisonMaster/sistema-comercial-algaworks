@@ -61,10 +61,12 @@ public class PedidoRepository implements Serializable{
 		
 	}
 
-	public void salvar(Pedido pedido) {
+	public Pedido salvar(Pedido pedido) {
 		this.entityManager.getTransaction().begin();
-		this.entityManager.merge(pedido);
+		Pedido pedidoSalvo = this.entityManager.merge(pedido);
 		this.entityManager.getTransaction().commit();
+		
+		return pedidoSalvo;
 	}
 
 	public Pedido buscaPorId(Long id) {

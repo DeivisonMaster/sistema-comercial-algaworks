@@ -15,13 +15,16 @@
 		</p:toolbarGroup>
 
 		<p:toolbarGroup align="right">
-			<p:commandButton value="Emitir" />
+			<p:commandButton value="Emitir" action="#{emissaoPedido.emitirPedido()}"
+				process="@form" update="@form"/>
+				
 			<p:commandButton value="Cancelar" />
+			
 			<p:commandButton value="Enviar por e-mail" />
 			
 			<p:separator/>
 			
-			<p:commandButton value="Pesquisa" />
+			<p:button value="Pesquisa" outcome="/pedido/ConsultaPedidos" />
 		</p:toolbarGroup>
 	</p:toolbar>
 </ui:composition>

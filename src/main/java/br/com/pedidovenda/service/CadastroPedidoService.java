@@ -17,7 +17,7 @@ public class CadastroPedidoService implements Serializable {
 	private PedidoRepository pedidoRepository;
 	
 	@Transactional
-	public void salvar(Pedido pedido) {
+	public Pedido salvar(Pedido pedido) {
 		if(pedido.isNovo()) {
 			pedido.setDataCriacao(new Date());
 			pedido.setStatus(StatusPedido.ORCAMENTO);
@@ -33,7 +33,9 @@ public class CadastroPedidoService implements Serializable {
 			throw new NegocioException("O valor total do pedido não pode ser negativo");
 		}
 		
-		this.pedidoRepository.salvar(pedido);
+		Pedido pedidoSalvo = this.pedidoRepository.salvar(pedido);
+		
+		return pedidoSalvo;
 	}
 
 }
