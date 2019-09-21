@@ -141,18 +141,34 @@
 		
 		
 		<!-- requerido para envio de emails -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.outjected</groupId> -->
-<!-- 			<artifactId>simple-email</artifactId> -->
-<!-- 			<version>0.1.2-SNAPSHOT</version> -->
-<!-- 			<scope>compile</scope> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>com.outjected</groupId>
+			<artifactId>simple-email</artifactId>
+			<version>0.2.5-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
 		
 		<!-- requerido para envio de emails -->
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<!-- template de e-mail APACHE VELOCITY -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<!-- formatação de número em templates -->
+		<dependency>
+			<groupId>velocity-tools</groupId>
+			<artifactId>velocity-tools-generic</artifactId>
+			<version>1.1</version>
 			<scope>compile</scope>
 		</dependency>
 		

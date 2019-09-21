@@ -271,7 +271,16 @@ public class Pedido implements Serializable{
 		return this.isExistente() && this.isOrcamento();
 	}
 
-	
+	@Transient
+	public boolean naoEnviavelPorEmail() {
+		return this.isNovo() || this.isCancelado();
+	}
+
+	@Transient
+	public boolean isCancelado() {
+		// TODO implementar
+		return false;
+	}
 
 
 	

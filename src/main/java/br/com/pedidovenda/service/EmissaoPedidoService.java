@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import br.com.pedidovenda.model.Pedido;
 import br.com.pedidovenda.model.StatusPedido;
 import br.com.pedidovenda.repository.PedidoRepository;
+import br.com.pedidovenda.util.Transacional;
 
 @Dependent
 public class EmissaoPedidoService implements Serializable {
@@ -22,7 +23,7 @@ public class EmissaoPedidoService implements Serializable {
 	@Inject
 	private EstoqueService estoqueService;
 	
-	
+	@Transacional
 	public Pedido emitir(Pedido pedido) {
 		pedido = this.cadastroPedidoService.salvar(pedido);
 		
