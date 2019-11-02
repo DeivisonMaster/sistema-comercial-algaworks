@@ -56,9 +56,11 @@ public class Mailer implements Serializable {
 		Address[] toUser = InternetAddress.parse(pedido.getCliente().getEmail());
 		message.setRecipients(Message.RecipientType.TO, toUser);
 		message.setSubject("Pedido " + pedido.getId());
+		
+		// TODO configurar envio de e-mail com apache velocity
 //		message.setContent(
 //				new VelocityTemplate(getClass().getResourceAsStream("/emails/email.template")), "text/html; charset=UTF-8");
-//		message.put("pedido", pedido);
+//		message.put("pedido", pedido);	
 	    //message.put("number", new NumberTool());
 		//message.put("locale", new Locale("pt", "BR"));
 		message.setText("Olá " + pedido.getCliente().getNome() + ", Seu e-mail foi cadastrado com sucesso, em breve novidades.");

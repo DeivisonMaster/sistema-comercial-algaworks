@@ -80,7 +80,7 @@
 						oncomplete="PF('confirmarExclusao').show();" process="@this" 
 						update=":frmConsultaProduto:dlgConfirmaExclusao">
 						
-						<f:setPropertyActionListener value="#{consultaProduto.produtoSelecionado}" target="#{produto}" />
+						<f:setPropertyActionListener target="#{consultaProduto.produtoSelecionado}" value="#{produto}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
