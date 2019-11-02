@@ -8,16 +8,23 @@
            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	
+	<!-- libera acesso para recursos do projeto -->
+	<http pattern="/javax.faces.resource/**" security="none"/>
+	
 	<!-- interceptador para qualquer diretorio com liberação de acesso para ROLE_ADMINISTRADORES -->
-	<http auto-config="true">
-		<intercept-url pattern="/**" access="ROLE_ADMINISTRADORES"/>  
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/Home.xhtml" access="isAuthenticated()"/>
+		<intercept-url pattern="/pedido/**" access="hasAnyRole('VENDEDORES', 'AUXILIARES', 'ADMINISTRADORES')"/>	
+		<intercept-url pattern="/produto/**" access="hasAnyRole('ADMINISTRADORES')"/>
+		
+		<intercept-url pattern="/**" access="denyAll"/>
 	</http>
 	
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
-				<user name="joao" password="123" authorities="ROLE_VENDEDORES"/>
-				<user name="admin" password="321" authorities="ROLE_ADMINISTRADORES"/>
+				<user name="joao" password="123" authorities="VENDEDORES"/>
+				<user name="admin" password="321" authorities="ADMINISTRADORES"/>
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
