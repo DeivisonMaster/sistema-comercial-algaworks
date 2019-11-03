@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import br.com.pedidovenda.model.Usuario;
@@ -47,6 +48,23 @@ public class UsuarioRepository implements Serializable{
 		this.entityManager.merge(usuario);
 		this.entityManager.getTransaction().commit();
 		
+	}
+
+
+	public Usuario buscaPorEmail(String email) {
+		Usuario usuario = null;
+		
+		try {
+			TypedQuery<Usuario> query = this.entityManager.createQuery("select u from Usuario u where u.email = :email", Usuario.class);
+			query.setParameter("email", email.toLowerCase());
+			
+			usuario = query.getSingleResult();
+			
+		} catch (NoResultException e) {
+			// Nenhum usuário encontrado
+		}
+		
+		return usuario;
 	}
 	
 }

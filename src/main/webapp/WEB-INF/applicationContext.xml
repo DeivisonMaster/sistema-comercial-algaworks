@@ -7,6 +7,9 @@
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
+
+	<!-- registrando a classe como bean spring -->
+	<beans:bean id="appUserDetailsService" class="br.com.pedidovenda.security.AppUserDetailsService"/>
 	
 	<!-- libera acesso para recursos do projeto -->
 	<http pattern="/javax.faces.resource/**" security="none"/>
@@ -21,11 +24,8 @@
 	</http>
 	
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="joao" password="123" authorities="VENDEDORES"/>
-				<user name="admin" password="321" authorities="ADMINISTRADORES"/>
-			</user-service>
+		<authentication-provider user-service-ref="appUserDetailsService">
+<!-- 			<password-encoder hash="md5"/> -->
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>
