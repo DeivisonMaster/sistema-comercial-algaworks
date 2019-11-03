@@ -8,19 +8,33 @@
            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 
-	<!-- registrando a classe como bean spring -->
+	<!-- registrando a classe de autenticação AppUserDetailsService como bean spring -->
 	<beans:bean id="appUserDetailsService" class="br.com.pedidovenda.security.AppUserDetailsService"/>
 	
-	<!-- libera acesso para recursos do projeto -->
+	<http pattern="/Login.xhtml" security="none"/>
+	<http pattern="/Erro.xhtml" security="none"/>
+	
+	<!-- libera acesso para recursos do projeto como imagens -->
 	<http pattern="/javax.faces.resource/**" security="none"/>
 	
-	<!-- interceptador para qualquer diretorio com liberação de acesso para ROLE_ADMINISTRADORES -->
-	<http auto-config="true" use-expressions="true">
+	<!-- 
+		interceptador para qualquer diretorio com liberação de acesso para ROLE_ADMINISTRADORES 
+	
+		auto-config=true habilita a tela de login padrão do spring
+	-->
+	<http auto-config="false" use-expressions="true">
 		<intercept-url pattern="/Home.xhtml" access="isAuthenticated()"/>
 		<intercept-url pattern="/pedido/**" access="hasAnyRole('VENDEDORES', 'AUXILIARES', 'ADMINISTRADORES')"/>	
 		<intercept-url pattern="/produto/**" access="hasAnyRole('ADMINISTRADORES')"/>
 		
 		<intercept-url pattern="/**" access="denyAll"/>
+		
+		<form-login login-page="/Login.xhtml" 
+			authentication-failure-url="/Login.xhtml?invalid=true" 
+			default-target-url="/" 
+			always-use-default-target="true"/>
+		
+		<logout logout-url="/j_spring_security_logout" invalidate-session="true"/>
 	</http>
 	
 	<authentication-manager>
