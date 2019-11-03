@@ -22,9 +22,9 @@
 			<property name="hibernate.connection.url"
 				value="jdbc:mysql://localhost:3306/pdv" />
 			<property name="hibernate.connection.username"
-				value="master" />
+				value="root" />
 			<property name="hibernate.connection.password"
-				value="matos132739" />
+				value="" />
 
 
 			<property name="hibernate.cache.provider_class"
