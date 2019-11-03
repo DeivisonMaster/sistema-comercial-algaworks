@@ -8,17 +8,21 @@
 
 	<p:toolbar style="margin: 20px 0 0 0;">
 		<p:toolbarGroup>
-			<p:button value="Novo" outcome="/pedido/CadastroPedido" />
+			<p:button value="Novo" outcome="/pedido/CadastroPedido" 
+				disabled="#{not seguranca.criarNovoPedidoPermitido}"/>
 			
 			<p:commandButton value="Salvar" 
-				action="#{cadastroPedido.salvar()}" process="@form" update="@form"/>
+				action="#{cadastroPedido.salvar()}" process="@form" update="@form"
+				disabled="#{not seguranca.salvarPedidoPermitido}"/>
 		</p:toolbarGroup>
 
 		<p:toolbarGroup align="right">
 			<p:commandButton value="Emitir" action="#{emissaoPedido.emitirPedido()}"
-				process="@form" update="@form"/>
+				process="@form" update="@form"
+				disabled="#{not seguranca.emitirPedidoPermitido}"/>
 				
-			<p:commandButton value="Cancelar" />
+			<p:commandButton value="Cancelar" 
+				disabled="#{not seguranca.cancelarPedidoPermitido}"/>
 			
 			<p:commandButton value="Enviar por e-mail" action="#{envioEmail.enviarPedido()}" 
 				process="@this" disabled="#{cadastroPedido.pedido.naoEnviavelPorEmail()}"/>

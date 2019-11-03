@@ -19,7 +19,8 @@
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Novo" outcome="/pedido/CadastroPedido" />
+					<p:button value="Novo" outcome="/pedido/CadastroPedido" 
+						disabled="#{not seguranca.criarNovoPedidoPermitido}"/>
 				</p:toolbarGroup>
 			</p:toolbar>
 
