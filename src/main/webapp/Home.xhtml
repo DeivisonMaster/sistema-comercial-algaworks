@@ -3,15 +3,21 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+	
+	<f:metadata>
+		<f:viewParam name="dummy"/>
+		<f:event listener="#{pedidosCriadosController.preRender}" type="preRenderView"/>
+	</f:metadata>
 
-	<ui:define name="titulo">Dashboard1</ui:define>
+	<ui:define name="titulo">Dashboard</ui:define>
 
-	<ui:define name="content">
-		<h:form>
-		
-				<h:outputText value="Seja bem-vindo" />
-				
+	<ui:define name="conteudo">
+		<h:form id="frmHome" prependId="false">
+			
+			<p:chart type="line" model="#{pedidosCriadosController.model}" title="Pedidos Criados"
+				style="height: 400px" animate="true" minY="0" legendPosition="e"/>
 		</h:form>
 	</ui:define>
 
