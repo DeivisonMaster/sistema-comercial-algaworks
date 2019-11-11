@@ -93,7 +93,7 @@ public class UtilRelatorio implements Work{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/pdv", "master", "matos132739");
+			conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/pdv", "root", "");
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
