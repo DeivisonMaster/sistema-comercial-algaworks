@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
@@ -95,21 +97,22 @@ public class Teste {
 	}
 
 	public static void main(String[] args) {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PedidoVenda");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
+//		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PedidoVenda");
+//		EntityManager entityManager = entityManagerFactory.createEntityManager();
+//		
+//		Session session = entityManager.unwrap(Session.class);
+//		
+//		Usuario usuario = new Usuario();
+//		usuario.setId(1L);
+//		
+//		Map<Date, BigDecimal> valores = valoresTotaisPorData(6, usuario, session);
+//		
+//		for (Date data : valores.keySet()) {
+//			System.out.println(data + " = " + valores.get(data));
+//		}
+//		
+//		entityManager.close();
 		
-		Session session = entityManager.unwrap(Session.class);
-		
-		Usuario usuario = new Usuario();
-		usuario.setId(1L);
-		
-		Map<Date, BigDecimal> valores = valoresTotaisPorData(6, usuario, session);
-		
-		for (Date data : valores.keySet()) {
-			System.out.println(data + " = " + valores.get(data));
-		}
-		
-		entityManager.close();
 		
 		
 		

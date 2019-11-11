@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition template="/_template.xhtml" 
+	  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+                                                 xmlns:p="http://primefaces.org/ui"> 
+
+	 <ui:define name="titulo">Relatórios</ui:define>
+	 
+	 <ui:define name="conteudo">
+	 	<h:form id="frmRelatorio" prependId="false">
+	 		<p:messages id="growl" autoUpdate="true"/>
+			 		
+	 		<h1>Relatório de pedidos emitidos</h1>
+	 		
+	 		<p:toolbar style="margin: 20px 0 0 0;">
+	 			<p:toolbarGroup>
+	 				<p:commandButton value="Emitir" ajax="false" 
+	 					action="#{relatorioPedido.emitir()}" onclick="this.form.target='_blank'"/>
+	 			</p:toolbarGroup>
+	 		</p:toolbar>
+	 		
+	 		<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin: 20px 0 10px 0;" columnClasses="rotulo, campo">
+	 			<p:outputLabel value="Data de criação"/>
+	 			
+	 			<h:panelGroup>
+	 				<p:calendar id="dataInicio" size="20" pattern="dd/MM/yyyy"
+	 					required="true" requiredMessage="Data inicio deve ser informado"
+	 					value="#{relatorioPedido.dataInicio}"/>
+	 				
+	 				<p:spacer width="8"/>
+	 				<h:outputText value="a" />
+	 				<p:spacer width="8"/>
+	 				
+	 				<p:calendar id="dataFim" size="20" pattern="dd/MM/yyyy"
+	 					required="true" requiredMessage="Data fim deve ser informado"
+	 					value="#{relatorioPedido.dataFim}"/>
+	 				
+	 			</h:panelGroup>
+	 			
+	 		</p:panelGrid>
+	 	</h:form>
+	 </ui:define>
+
+</ui:composition>

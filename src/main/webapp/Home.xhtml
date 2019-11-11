@@ -6,18 +6,11 @@
 	xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui">
 	
-	<f:metadata>
-		<f:viewParam name="dummy"/>
-		<f:event listener="#{pedidosCriadosController.preRender}" type="preRenderView"/>
-	</f:metadata>
-
 	<ui:define name="titulo">Dashboard</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form id="frmHome" prependId="false">
-			
-			<p:chart type="line" model="#{pedidosCriadosController.model}" title="Pedidos Criados"
-				style="height: 400px" animate="true" minY="0" legendPosition="e"/>
+			<h1>Olá</h1>
 		</h:form>
 	</ui:define>
 

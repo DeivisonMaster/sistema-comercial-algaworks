@@ -38,8 +38,8 @@ public class PedidosCriadosController {
 	public void preRender() {
 		this.model = new LineChartModel();
 		
-		adicionaSerie("Todos os pedidos", null);
-		adicionaSerie("Meus Pedidos", usuarioLogado.getUsuario());
+		//adicionaSerie("Todos os pedidos", null);
+		//adicionaSerie("Meus Pedidos", usuarioLogado.getUsuario());
 	}
 	
 	private void adicionaSerie(String rotulo) {
