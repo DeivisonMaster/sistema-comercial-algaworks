@@ -24,8 +24,8 @@ public class MailConfigProducer {
 		config.setServerPort(465);
 		config.setEnableSsl(Boolean.parseBoolean("javax.net.ssl.SSLSocketFactory"));
 		config.setAuth(Boolean.parseBoolean("true"));
-		config.setUsername("deivisonoliveira.info@gmail.com");
-		config.setPassword("mRx27121990132739g");
+		config.setUsername("");
+		config.setPassword("");
 		
 		return config;
 	}
